@@ -1,0 +1,2421 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examen Tecnología e Ingeniería I (1º Bachillerato) — Unidades 1 y 2</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #2563eb;
+      --primary-bg: #eff6ff;
+      --accent: #0f766e;
+      --accent-bg: #f0fdfa;
+      --warning: #b45309;
+      --warning-bg: #fffbeb;
+      --danger: #b91c1c;
+      --danger-bg: #fef2f2;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #cbd5e1;
+      --radius: 12px;
+      --shadow: 0 4px 16px rgba(15, 23, 42, 0.07);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      color: #fff;
+      padding: 1.5rem 1.25rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-inner {
+      max-width: 1020px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .title-group h1 {
+      margin: 0;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .title-group p {
+      margin: 0.25rem 0 0;
+      font-size: 0.88rem;
+      color: #cbd5e1;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .badge-weight {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.28);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 8px;
+      padding: 0.6rem 1.1rem;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+    .btn-primary { background: var(--primary-light); color: #fff; }
+    .btn-primary:hover:not(:disabled) { background: #1d4ed8; transform: translateY(-1px); }
+    .btn-success { background: #059669; color: #fff; }
+    .btn-success:hover:not(:disabled) { background: #047857; transform: translateY(-1px); }
+    .btn-teacher { background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.35); }
+    .btn-teacher:hover { background: rgba(255,255,255,0.26); }
+    .btn-outline { background: #fff; color: var(--primary); border: 1px solid var(--border); }
+    .btn-outline:hover { background: var(--primary-bg); border-color: var(--primary-light); }
+    .btn-danger { background: var(--danger); color: #fff; }
+
+    .container {
+      max-width: 1020px;
+      margin: 1.75rem auto 3rem;
+      padding: 0 1.25rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid #e2e8f0;
+      padding: 1.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .section-header h2 {
+      margin: 0;
+      font-size: 1.18rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-pts {
+      background: var(--primary-bg);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid #bfdbfe;
+    }
+    .section-pts.calc {
+      background: var(--accent-bg);
+      color: var(--accent);
+      border-color: #99f6e4;
+    }
+
+    .student-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.88rem;
+      margin-bottom: 0.35rem;
+      color: var(--muted);
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.96rem;
+      background-color: #fff;
+      color: var(--text);
+      transition: border-color 0.15s;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+    }
+
+    .question-item {
+      padding: 1.05rem 1.15rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      background: #f8fafc;
+    }
+    .question-item:last-child { margin-bottom: 0; }
+    .q-title {
+      font-weight: 600;
+      margin-bottom: 0.65rem;
+      color: #1e293b;
+    }
+    .q-tag {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.15rem 0.5rem;
+      border-radius: 5px;
+      background: #e2e8f0;
+      color: #334155;
+      margin-right: 0.45rem;
+    }
+
+    .inline-blank {
+      border: none;
+      border-bottom: 2px solid var(--primary-light);
+      background: #fff;
+      padding: 0.25rem 0.55rem;
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--primary);
+      border-radius: 4px 4px 0 0;
+      min-width: 170px;
+      max-width: 100%;
+      margin: 0.15rem 0.25rem;
+    }
+    .inline-blank:focus { outline: none; background: var(--primary-bg); }
+
+    .match-row {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 1rem;
+      align-items: center;
+      padding: 0.7rem 0.9rem;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      margin-bottom: 0.65rem;
+    }
+    .match-label { cursor: pointer; }
+    @media (max-width: 680px) {
+      .match-row { grid-template-columns: 1fr; }
+    }
+
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .radio-group.horizontal {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+    .radio-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.55rem;
+      background: #fff;
+      padding: 0.55rem 0.85rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .radio-option:hover { border-color: var(--primary-light); background: #f8fafc; }
+    .radio-option:has(input:checked) {
+      border-color: var(--primary-light);
+      background: var(--primary-bg);
+    }
+    .radio-option input { margin-top: 0.25rem; accent-color: var(--primary-light); }
+
+    .calc-box {
+      background: #fff;
+      border-left: 4px solid var(--accent);
+      padding: 1.15rem;
+      border-radius: 8px;
+      border-top: 1px solid #e2e8f0;
+      border-right: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 1.1rem;
+    }
+    .calc-box:last-child { margin-bottom: 0; }
+    .calc-inputs {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 0.8rem;
+    }
+    .calc-num-input {
+      width: 170px;
+      padding: 0.55rem 0.75rem;
+      border: 2px solid #99f6e4;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .calc-num-input:focus { outline: none; border-color: var(--accent); }
+    .unit-label {
+      font-weight: 700;
+      color: var(--muted);
+      background: #f1f5f9;
+      padding: 0.45rem 0.75rem;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+    }
+    .work-notes {
+      width: 100%;
+      margin-top: 0.65rem;
+      padding: 0.5rem 0.75rem;
+      border: 1px dashed #cbd5e1;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.86rem;
+      color: var(--muted);
+      resize: vertical;
+    }
+
+    .alert {
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      font-size: 0.93rem;
+    }
+    .alert-info { background: var(--primary-bg); border: 1px solid #bfdbfe; color: #1e3a8a; }
+    .alert-success { background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; }
+    .alert-warning { background: var(--warning-bg); border: 1px solid #fde68a; color: #92400e; }
+    .alert-danger { background: var(--danger-bg); border: 1px solid #fecaca; color: #991b1b; }
+
+    .hidden { display: none !important; }
+
+    /* Panel del Profesor */
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 0.6rem 1.1rem;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      margin-bottom: -2px;
+    }
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary-light);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-top: 0.75rem;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f1f5f9; font-weight: 700; color: #1e293b; }
+    tr:nth-child(even) td { background: #f8fafc; }
+
+    .cipher-preview {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.75rem;
+      max-width: 240px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #64748b;
+    }
+
+    .progress-bar-wrap {
+      background: rgba(255,255,255,0.2);
+      height: 6px;
+      width: 100%;
+      margin-top: 0.75rem;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      background: #34d399;
+      height: 100%;
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    .badge-ok {
+      display: inline-block;
+      background: #dcfce7;
+      color: #166534;
+      font-weight: 700;
+      padding: 0.12rem 0.45rem;
+      border-radius: 4px;
+      font-size: 0.78rem;
+    }
+    .badge-err {
+      display: inline-block;
+      background: #fee2e2;
+      color: #991b1b;
+      font-weight: 700;
+      padding: 0.12rem 0.45rem;
+      border-radius: 4px;
+      font-size: 0.78rem;
+    }
+
+    @media print {
+      header { position: static; box-shadow: none; }
+      .header-actions, .progress-bar-wrap, #examForm, #teacherView, .btn { display: none !important; }
+      body { background: #fff; }
+      .card { box-shadow: none; border: 1px solid #cbd5e1; }
+    }
+  </style>
+</head>
+<body>
+
+<noscript>
+  <div class="container">
+    <div class="alert alert-danger">
+      <strong>JavaScript desactivado:</strong> Este examen interactivo requiere activar JavaScript en el navegador para corregir, cifrar y enviar las respuestas a Google Drive.
+    </div>
+  </div>
+</noscript>
+
+<header>
+  <div class="header-inner">
+    <div class="title-group">
+      <h1>Tecnología e Ingeniería I — 1º Bachillerato</h1>
+      <p>Evaluación Unidades 1 y 2 (Proyectos de I+D+i · Materiales y Fabricación) — Ed. Donostiarra</p>
+    </div>
+    <div class="header-actions">
+      <span class="badge-weight">Teoría 40% (4 pts) · Cálculo 60% (6 pts)</span>
+      <button type="button" class="btn btn-teacher" id="toggleModeBtn" onclick="toggleTeacherMode()">
+        🔐 Acceso Profesor
+      </button>
+    </div>
+  </div>
+  <div class="header-inner">
+    <div class="progress-bar-wrap" role="progressbar" aria-label="Progreso del examen" aria-valuemin="0" aria-valuemax="100" title="Progreso de respuestas completadas">
+      <div class="progress-bar-fill" id="progressBar"></div>
+    </div>
+  </div>
+</header>
+
+<!-- =========================================================
+     VISTA ALUMNO: EXAMEN INTERACTIVO
+     ========================================================= -->
+<main class="container" id="studentView">
+
+  <div class="card">
+    <div class="section-header">
+      <h2>👤 Identificación del Alumno/a</h2>
+      <span class="section-pts">Obligatorio antes de entregar</span>
+    </div>
+    <div class="student-grid">
+      <div class="form-group">
+        <label for="studentName">Apellidos y Nombre *</label>
+        <input type="text" id="studentName" class="form-control" placeholder="Ej.: García López, María" autocomplete="off" required="" oninput="updateProgress()">
+      </div>
+      <div class="form-group">
+        <label for="studentGroup">Curso y Grupo *</label>
+        <input type="text" id="studentGroup" class="form-control" value="1º Bachillerato A" autocomplete="off" required="" oninput="updateProgress()">
+      </div>
+      <div class="form-group">
+        <label for="studentDni">NIA / Código de alumno (opcional)</label>
+        <input type="text" id="studentDni" class="form-control" placeholder="Ej.: 1045892" autocomplete="off">
+      </div>
+    </div>
+  </div>
+
+  <form id="examForm" autocomplete="off" onsubmit="event.preventDefault(); return false;">
+
+    <!-- BLOQUE TEORÍA (40% = 4.00 PUNTOS) -->
+    <!-- SECCIÓN 1: COMPLETAR -->
+    <div class="card" id="secCompCard">
+      <div class="section-header">
+        <h2>1. Completar conceptos clave (Teoría)</h2>
+        <span class="section-pts">1,00 punto (0,25 pts / hueco)</span>
+      </div>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-top: 0;">Escribe la palabra o siglas exactas que completan correctamente cada enunciado según los contenidos de las Unidades 1 y 2.</p>
+
+      <div class="question-item">
+        <div class="q-title"><span class="q-tag">UD 1 · I+D+i</span> 1.1. En España, el organismo público dependiente del Ministerio encargado de promover la innovación y el desarrollo tecnológico de las empresas, canalizando ayudas y financiación para proyectos de I+D+i, se conoce por las siglas <input type="text" class="inline-blank" id="comp1" aria-label="Respuesta 1.1" placeholder="Siglas..." autocomplete="off" spellcheck="false" oninput="updateProgress()">.</div>
+      </div>
+
+      <div class="question-item">
+        <div class="q-title"><span class="q-tag">UD 1 · Calidad</span> 1.2. En metrología industrial, dado que es imposible conseguir una precisión absoluta en las medidas de una pieza, el intervalo de valores admisibles en el que debe encontrarse una magnitud para aceptarse como válida se denomina margen de <input type="text" class="inline-blank" id="comp2" aria-label="Respuesta 1.2" placeholder="Concepto..." autocomplete="off" spellcheck="false" oninput="updateProgress()">.</div>
+      </div>
+
+      <div class="question-item">
+        <div class="q-title"><span class="q-tag">UD 2 · Propiedades</span> 1.3. La propiedad mecánica que mide la oposición que ofrece un material a ser rayado o perforado por otro cuerpo se denomina <input type="text" class="inline-blank" id="comp3" aria-label="Respuesta 1.3" placeholder="Propiedad..." autocomplete="off" spellcheck="false" oninput="updateProgress()">.</div>
+      </div>
+
+      <div class="question-item">
+        <div class="q-title"><span class="q-tag">UD 2 · Fabricación</span> 1.4. La técnica de prototipado rápido aditivo que emplea un láser de alta potencia para fundir capa a capa un material en polvo (metálico, plástico o cerámico) se denomina sinterización por láser selectiva, cuyas siglas son <input type="text" class="inline-blank" id="comp4" aria-label="Respuesta 1.4" placeholder="Siglas..." autocomplete="off" spellcheck="false" oninput="updateProgress()">.</div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 2: RELACIONAR -->
+    <div class="card" id="secRelCard">
+      <div class="section-header">
+        <h2>2. Relacionar conceptos y definiciones (Teoría)</h2>
+        <span class="section-pts">1,00 punto (0,25 pts / pareja)</span>
+      </div>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-top: 0;">Selecciona en cada desplegable la definición o aplicación tecnológica correspondiente de la columna derecha.</p>
+
+      <div class="match-row">
+        <label for="rel1" class="match-label"><span class="q-tag">UD 1</span> <strong>2.1. Ciclo de Deming (PDCA)</strong></label>
+        <select class="form-control" id="rel1" onchange="updateProgress()">
+          <option value="">-- Selecciona su correspondencia --</option>
+          <option value="A">A) Aleación férrica con un contenido de carbono entre el 2 % y el 6,67 %, dura, frágil y fácilmente moldeable.</option>
+          <option value="B">B) Estrategia cíclica de mejora continua (Planear, Hacer, Verificar, Actuar) aplicada a la gestión de la calidad.</option>
+          <option value="C">C) Aleación metálica no férrica de cobre y cinc (Cu + Zn) con brillo similar al oro usada en fontanería.</option>
+          <option value="D">D) Técnica de ideación basada en preguntas sobre sustituir, combinar, adaptar, modificar, proponer, eliminar y reorganizar.</option>
+          <option value="E">E) Termoplástico biodegradable obtenido del almidón de maíz o caña de azúcar muy utilizado en impresión 3D FDM.</option>
+        </select>
+      </div>
+
+      <div class="match-row">
+        <label for="rel2" class="match-label"><span class="q-tag">UD 1</span> <strong>2.2. Técnica SCAMPER</strong></label>
+        <select class="form-control" id="rel2" onchange="updateProgress()">
+          <option value="">-- Selecciona su correspondencia --</option>
+          <option value="A">A) Aleación férrica con un contenido de carbono entre el 2 % y el 6,67 %, dura, frágil y fácilmente moldeable.</option>
+          <option value="B">B) Estrategia cíclica de mejora continua (Planear, Hacer, Verificar, Actuar) aplicada a la gestión de la calidad.</option>
+          <option value="C">C) Aleación metálica no férrica de cobre y cinc (Cu + Zn) con brillo similar al oro usada en fontanería.</option>
+          <option value="D">D) Técnica de ideación basada en preguntas sobre sustituir, combinar, adaptar, modificar, proponer, eliminar y reorganizar.</option>
+          <option value="E">E) Termoplástico biodegradable obtenido del almidón de maíz o caña de azúcar muy utilizado en impresión 3D FDM.</option>
+        </select>
+      </div>
+
+      <div class="match-row">
+        <label for="rel3" class="match-label"><span class="q-tag">UD 2</span> <strong>2.3. Fundición</strong></label>
+        <select class="form-control" id="rel3" onchange="updateProgress()">
+          <option value="">-- Selecciona su correspondencia --</option>
+          <option value="A">A) Aleación férrica con un contenido de carbono entre el 2 % y el 6,67 %, dura, frágil y fácilmente moldeable.</option>
+          <option value="B">B) Estrategia cíclica de mejora continua (Planear, Hacer, Verificar, Actuar) aplicada a la gestión de la calidad.</option>
+          <option value="C">C) Aleación metálica no férrica de cobre y cinc (Cu + Zn) con brillo similar al oro usada en fontanería.</option>
+          <option value="D">D) Técnica de ideación basada en preguntas sobre sustituir, combinar, adaptar, modificar, proponer, eliminar y reorganizar.</option>
+          <option value="E">E) Termoplástico biodegradable obtenido del almidón de maíz o caña de azúcar muy utilizado en impresión 3D FDM.</option>
+        </select>
+      </div>
+
+      <div class="match-row">
+        <label for="rel4" class="match-label"><span class="q-tag">UD 2</span> <strong>2.4. Poliácido láctico (PLA)</strong></label>
+        <select class="form-control" id="rel4" onchange="updateProgress()">
+          <option value="">-- Selecciona su correspondencia --</option>
+          <option value="A">A) Aleación férrica con un contenido de carbono entre el 2 % y el 6,67 %, dura, frágil y fácilmente moldeable.</option>
+          <option value="B">B) Estrategia cíclica de mejora continua (Planear, Hacer, Verificar, Actuar) aplicada a la gestión de la calidad.</option>
+          <option value="C">C) Aleación metálica no férrica de cobre y cinc (Cu + Zn) con brillo similar al oro usada en fontanería.</option>
+          <option value="D">D) Técnica de ideación basada en preguntas sobre sustituir, combinar, adaptar, modificar, proponer, eliminar y reorganizar.</option>
+          <option value="E">E) Termoplástico biodegradable obtenido del almidón de maíz o caña de azúcar muy utilizado en impresión 3D FDM.</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 3: VERDADERO O FALSO -->
+    <div class="card" id="secVfCard">
+      <div class="section-header">
+        <h2>3. Verdadero o Falso (Teoría)</h2>
+        <span class="section-pts">1,00 punto (0,25 pts / ítem)</span>
+      </div>
+
+      <div class="question-item">
+        <div class="q-title"><span class="q-tag">UD 1 · PERT</span> 3.1. En un diagrama de PERT se representan gráficamente las tareas de un proyecto y sus dependencias mediante nodos y flechas, permitiendo determinar la «ruta crítica» que más retraso puede ocasionar.</div>
+        <div class="radio-group horizontal" role="radiogroup" aria-label="Pregunta 3.1">
+          <label class="radio-option"><input type="radio" name="vf1" value="V" onchange="updateProgress()"> Verdadero</label>
+          <label class="radio-option"><input type="radio" name="vf1" value="F" onchange="updateProgress()"> Falso</label>
+        </div>
+      </div>
+
+      <div class="question-item">
+        <div class="q-title"><span class="q-tag">UD 1 · Mercado</span> 3.2. En el ciclo de vida de un producto tecnológico, la fase de crecimiento se caracteriza por un descenso acusado de las ventas debido a la saturación del mercado y la aparición de productos sustitutivos.</div>
+        <div class="radio-group horizontal" role="radiogroup" aria-label="Pregunta 3.2">
+          <label class="radio-option"><input type="radio" name="vf2" value="V" onchange="updateProgress()"> Verdadero</label>
+          <label class="radio-option"><input type="radio" name="vf2" value="F" onchange="updateProgress()"> Falso</label>
+        </div>
+      </div>
+
+      <div class="question-item">
+        <div class="q-title"><span class="q-tag">UD 2 · Cerámicos</span> 3.3. El hormigón en masa presenta una excelente resistencia a los esfuerzos de tracción y flexión, pero resulta muy frágil cuando se somete a esfuerzos de compresión.</div>
+        <div class="radio-group horizontal" role="radiogroup" aria-label="Pregunta 3.3">
+          <label class="radio-option"><input type="radio" name="vf3" value="V" onchange="updateProgress()"> Verdadero</label>
+          <label class="radio-option"><input type="radio" name="vf3" value="F" onchange="updateProgress()"> Falso</label>
+        </div>
+      </div>
+
+      <div class="question-item">
+        <div class="q-title"><span class="q-tag">UD 2 · Polímeros</span> 3.4. Los plásticos termoestables, como la baquelita o la melamina, poseen cadenas poliméricas entrelazadas formando redes, por lo que una vez conformados mediante calor no pueden volver a fundirse.</div>
+        <div class="radio-group horizontal" role="radiogroup" aria-label="Pregunta 3.4">
+          <label class="radio-option"><input type="radio" name="vf4" value="V" onchange="updateProgress()"> Verdadero</label>
+          <label class="radio-option"><input type="radio" name="vf4" value="F" onchange="updateProgress()"> Falso</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 4: MÚLTIPLES OPCIONES -->
+    <div class="card" id="secMcCard">
+      <div class="section-header">
+        <h2>4. Preguntas de opción múltiple (Teoría)</h2>
+        <span class="section-pts">1,00 punto (0,25 pts / pregunta)</span>
+      </div>
+
+      <div class="question-item">
+        <div class="q-title"><span class="q-tag">UD 1 · Ideación</span> 4.1. ¿Cuál es la secuencia correcta de las cinco etapas de la metodología <em>design thinking</em>?</div>
+        <div class="radio-group" role="radiogroup" aria-label="Pregunta 4.1">
+          <label class="radio-option"><input type="radio" name="mc1" value="a" onchange="updateProgress()"> a) Definir → Empatizar → Idear → Probar → Prototipar</label>
+          <label class="radio-option"><input type="radio" name="mc1" value="b" onchange="updateProgress()"> b) Empatizar → Definir → Idear → Prototipar → Probar</label>
+          <label class="radio-option"><input type="radio" name="mc1" value="c" onchange="updateProgress()"> c) Idear → Empatizar → Prototipar → Definir → Probar</label>
+          <label class="radio-option"><input type="radio" name="mc1" value="d" onchange="updateProgress()"> d) Planear → Hacer → Verificar → Actuar → Comercializar</label>
+        </div>
+      </div>
+
+      <div class="question-item">
+        <div class="q-title"><span class="q-tag">UD 1 · Diseño</span> 4.2. En la etapa de diseño de un producto tecnológico, ¿qué tres dimensiones conforman el estudio de viabilidad para filtrar y seleccionar la mejor idea?</div>
+        <div class="radio-group" role="radiogroup" aria-label="Pregunta 4.2">
+          <label class="radio-option"><input type="radio" name="mc2" value="a" onchange="updateProgress()"> a) Viabilidad ecológica, social y normativa</label>
+          <label class="radio-option"><input type="radio" name="mc2" value="b" onchange="updateProgress()"> b) Viabilidad industrial, logística y publicitaria</label>
+          <label class="radio-option"><input type="radio" name="mc2" value="c" onchange="updateProgress()"> c) Viabilidad comercial, económica y técnica</label>
+          <label class="radio-option"><input type="radio" name="mc2" value="d" onchange="updateProgress()"> d) Viabilidad financiera, bursátil y de patentes</label>
+        </div>
+      </div>
+
+      <div class="question-item">
+        <div class="q-title"><span class="q-tag">UD 2 · Metales</span> 4.3. ¿Qué metales no férricos forman la aleación conocida como <strong>latón</strong> y cuál es una de sus características más destacadas?</div>
+        <div class="radio-group" role="radiogroup" aria-label="Pregunta 4.3">
+          <label class="radio-option"><input type="radio" name="mc3" value="a" onchange="updateProgress()"> a) Cobre y estaño (Cu + Sn); destaca por su excelente sonoridad para campanas y engranajes.</label>
+          <label class="radio-option"><input type="radio" name="mc3" value="b" onchange="updateProgress()"> b) Cobre y cinc (Cu + Zn); es el doble de resistente que los metales puros que lo forman y posee un brillo similar al oro.</label>
+          <label class="radio-option"><input type="radio" name="mc3" value="c" onchange="updateProgress()"> c) Aluminio y titanio (Al + Ti); se emplea exclusivamente en prótesis quirúrgicas por su biocompatibilidad.</label>
+          <label class="radio-option"><input type="radio" name="mc3" value="d" onchange="updateProgress()"> d) Hierro y carbono (Fe + C); se obtiene directamente en el alto horno en forma de arrabio.</label>
+        </div>
+      </div>
+
+      <div class="question-item">
+        <div class="q-title"><span class="q-tag">UD 2 · Nanotecnología</span> 4.4. A escala nanométrica (dimensiones inferiores a 100 nm), donde rigen las leyes de la física cuántica, ¿qué transformación experimenta el <strong>oro</strong> respecto a su comportamiento macroscópico?</div>
+        <div class="radio-group" role="radiogroup" aria-label="Pregunta 4.4">
+          <label class="radio-option"><input type="radio" name="mc4" value="a" onchange="updateProgress()"> a) Se transforma en un gas altamente combustible.</label>
+          <label class="radio-option"><input type="radio" name="mc4" value="b" onchange="updateProgress()"> b) Se convierte en un aislante eléctrico perfecto.</label>
+          <label class="radio-option"><input type="radio" name="mc4" value="c" onchange="updateProgress()"> c) Pasa de ser sólido a temperatura ambiente a comportarse como un líquido.</label>
+          <label class="radio-option"><input type="radio" name="mc4" value="d" onchange="updateProgress()"> d) Pierde su densidad y se vuelve completamente transparente.</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOQUE CÁLCULO (60% = 6.00 PUNTOS) -->
+    <div class="card" id="secCalcCard">
+      <div class="section-header">
+        <h2>5. Problemas de cálculo (60 % de la calificación)</h2>
+        <span class="section-pts calc">6,00 puntos (1,00 pt / problema)</span>
+      </div>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-top: 0;">Introduce el resultado numérico redondeado a un máximo de <strong>dos decimales</strong> en las unidades indicadas (se admite coma o punto decimal; margen de tolerancia ±2 %). Opcionalmente puedes anotar tu planteamiento en el recuadro inferior para revisión docente.</p>
+
+      <!-- Problema 1 (UD1 - Tolerancias) -->
+      <div class="calc-box" id="calcBox1">
+        <div class="q-title"><span class="q-tag">UD 1 · Control de calidad</span> Problema 5.1.</div>
+        <div id="calcText1">Un eje cilíndrico fabricado según normativa ISO tiene un diámetro nominal de <strong>24,0 mm</strong> con una tolerancia admisible del <strong>±2,5 %</strong>. Calcula el <strong>diámetro mínimo</strong> (en mm) que puede tener la pieza para superar el control de calidad.</div>
+        <div class="calc-inputs">
+          <label for="calc1" id="calcLabel1"><strong>D<sub>mín</sub> =</strong></label>
+          <input type="text" inputmode="decimal" id="calc1" class="calc-num-input" placeholder="Ej.: 23,4" autocomplete="off" oninput="updateProgress()">
+          <span class="unit-label">mm</span>
+        </div>
+        <textarea class="work-notes" id="work1" aria-label="Desarrollo del problema 5.1" rows="2" placeholder="Desarrollo / operaciones (opcional, se adjunta cifrado al profesor)..."></textarea>
+      </div>
+
+      <!-- Problema 2 (UD1 - Punto de equilibrio) -->
+      <div class="calc-box" id="calcBox2">
+        <div class="q-title"><span class="q-tag">UD 1 · Leyes de mercado</span> Problema 5.2.</div>
+        <div id="calcText2">En el estudio comercial de un nuevo dispositivo domótico, la función de oferta es <strong>Q<sub>o</sub> = 25·P − 500</strong> y la función de demanda es <strong>Q<sub>d</sub> = −15·P + 3.500</strong>, donde <em>P</em> es el precio en euros (€) y <em>Q</em> la cantidad de unidades. Calcula el <strong>precio de equilibrio</strong> del mercado (en €).</div>
+        <div class="calc-inputs">
+          <label for="calc2" id="calcLabel2"><strong>P<sub>equilibrio</sub> =</strong></label>
+          <input type="text" inputmode="decimal" id="calc2" class="calc-num-input" placeholder="Ej.: 100" autocomplete="off" oninput="updateProgress()">
+          <span class="unit-label">€</span>
+        </div>
+        <textarea class="work-notes" id="work2" aria-label="Desarrollo del problema 5.2" rows="2" placeholder="Desarrollo / operaciones (opcional)..."></textarea>
+      </div>
+
+      <!-- Problema 3 (UD1 - Ganancias y PVP) -->
+      <div class="calc-box" id="calcBox3">
+        <div class="q-title"><span class="q-tag">UD 1 · Comercialización</span> Problema 5.3.</div>
+        <div id="calcText3">Una empresa fabrica auriculares inalámbricos con un precio de coste de <strong>18,50 €/unidad</strong> y los vende al público a <strong>26,50 €</strong>, vendiendo <strong>4.500 unidades</strong>. Para ganar cuota de mercado rebaja el precio de venta al público en <strong>2,00 €</strong> (pasando a 24,50 €). Calcula <strong>cuántas unidades</strong> deberá vender al nuevo precio para mantener exactamente las mismas ganancias totales.</div>
+        <div class="calc-inputs">
+          <label for="calc3" id="calcLabel3"><strong>N<sub>2</sub> =</strong></label>
+          <input type="text" inputmode="decimal" id="calc3" class="calc-num-input" placeholder="Ej.: 6000" autocomplete="off" oninput="updateProgress()">
+          <span class="unit-label">unidades</span>
+        </div>
+        <textarea class="work-notes" id="work3" aria-label="Desarrollo del problema 5.3" rows="2" placeholder="Desarrollo / operaciones (opcional)..."></textarea>
+      </div>
+
+      <!-- Problema 4 (UD2 - Resistividad eléctrica) -->
+      <div class="calc-box" id="calcBox4">
+        <div class="q-title"><span class="q-tag">UD 2 · Propiedades eléctricas</span> Problema 5.4.</div>
+        <div id="calcText4">Un conductor de cobre de <strong>400 m</strong> de longitud posee una sección transversal de <strong>0,5 mm<sup>2</sup></strong>. Sabiendo que la resistividad del cobre es <strong>ρ = 0,017 Ω·mm<sup>2</sup>/m</strong>, calcula la <strong>resistencia eléctrica</strong> (en ohmios, Ω) que ofrece el cable al paso de la corriente.</div>
+        <div class="calc-inputs">
+          <label for="calc4" id="calcLabel4"><strong>R =</strong></label>
+          <input type="text" inputmode="decimal" id="calc4" class="calc-num-input" placeholder="Ej.: 13,6" autocomplete="off" oninput="updateProgress()">
+          <span class="unit-label">Ω</span>
+        </div>
+        <textarea class="work-notes" id="work4" aria-label="Desarrollo del problema 5.4" rows="2" placeholder="Desarrollo / operaciones (opcional)..."></textarea>
+      </div>
+
+      <!-- Problema 5 (UD2 - Ley de Hooke / Elasticidad) -->
+      <div class="calc-box" id="calcBox5">
+        <div class="q-title"><span class="q-tag">UD 2 · Elasticidad (Ley de Hooke)</span> Problema 5.5.</div>
+        <div id="calcText5">Una barra metálica de sección cuadrada de <strong>20 mm de lado</strong> y <strong>1,5 m de longitud inicial</strong> se somete a una fuerza de tracción de <strong>32.000 N</strong> dentro de su régimen elástico. Si su módulo de elasticidad (Young) es <strong>E = 2·10<sup>11</sup> N/m<sup>2</sup></strong>, calcula el <strong>alargamiento total (ΔL)</strong> que experimenta la barra expresado en <strong>milímetros (mm)</strong>.</div>
+        <div class="calc-inputs">
+          <label for="calc5" id="calcLabel5"><strong>ΔL =</strong></label>
+          <input type="text" inputmode="decimal" id="calc5" class="calc-num-input" placeholder="Ej.: 0,6" autocomplete="off" oninput="updateProgress()">
+          <span class="unit-label">mm</span>
+        </div>
+        <textarea class="work-notes" id="work5" aria-label="Desarrollo del problema 5.5" rows="2" placeholder="Desarrollo / operaciones (opcional)..."></textarea>
+      </div>
+
+      <!-- Problema 6 (UD2 - Dilatación térmica) -->
+      <div class="calc-box" id="calcBox6">
+        <div class="q-title"><span class="q-tag">UD 2 · Dilatación térmica</span> Problema 5.6.</div>
+        <div id="calcText6">Una viga estructural de acero tiene una longitud inicial de <strong>40 m</strong> en invierno a <strong>10 °C</strong>, y en verano alcanza los <strong>45 °C</strong>. Sabiendo que el coeficiente de dilatación lineal del acero es <strong>α = 1,1·10<sup>−5</sup> °C<sup>−1</sup></strong>, calcula el <strong>incremento de longitud (ΔL)</strong> que experimenta la viga expresado en <strong>milímetros (mm)</strong>.</div>
+        <div class="calc-inputs">
+          <label for="calc6" id="calcLabel6"><strong>ΔL =</strong></label>
+          <input type="text" inputmode="decimal" id="calc6" class="calc-num-input" placeholder="Ej.: 15,4" autocomplete="off" oninput="updateProgress()">
+          <span class="unit-label">mm</span>
+        </div>
+        <textarea class="work-notes" id="work6" aria-label="Desarrollo del problema 5.6" rows="2" placeholder="Desarrollo / operaciones (opcional)..."></textarea>
+      </div>
+    </div>
+
+    <!-- BOTÓN FINALIZAR -->
+    <div class="card" style="text-align: center;">
+      <p style="color: var(--muted); font-size: 0.92rem; margin-bottom: 1rem;">
+        Al finalizar el examen, tus respuestas y calificación se cifrarán mediante <strong>RSA-2048 + AES-256</strong> y se enviarán directamente a la carpeta de <strong>Google Drive</strong> del profesor/a.
+      </p>
+      <button type="button" id="submitBtn" class="btn btn-success" style="font-size: 1.05rem; padding: 0.85rem 1.8rem;" onclick="submitExam()">
+        ☁️ Finalizar Examen y Enviar a Google Drive
+      </button>
+    </div>
+
+  </form>
+
+  <!-- PANTALLA DE ENTREGA COMPLETADA -->
+  <div class="card hidden" id="submissionReceipt" aria-live="polite">
+    <div class="alert alert-success">
+      <h3 style="margin: 0 0 0.4rem;">✅ Examen finalizado y cifrado correctamente</h3>
+      <p style="margin: 0;">Tus respuestas y calificación han sido encriptadas con la clave pública del profesor/a. Sin la clave privada docente nadie puede visualizar ni alterar los resultados.</p>
+    </div>
+
+    <!-- Estado de envío a Google Drive -->
+    <div id="driveUploadStatus" class="alert alert-info">
+      ⏳ Conectando con la carpeta de Google Drive del profesor...
+    </div>
+
+    <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; padding: 1.1rem; margin-bottom: 1.1rem;">
+      <div><strong>Alumno/a:</strong> <span id="recName"></span></div>
+      <div><strong>Curso/Grupo:</strong> <span id="recGroup"></span></div>
+      <div><strong>Fecha y hora de entrega:</strong> <span id="recDate"></span></div>
+      <div><strong>ID de entrega cifrada:</strong> <code id="recId"></code></div>
+      <hr style="border: none; border-top: 1px solid #cbd5e1; margin: 0.75rem 0;">
+      <div id="recGradeHiddenMsg" style="color: var(--muted); font-size: 0.93rem;">
+        🔒 <strong>Calificación encriptada:</strong> Tu puntuación queda almacenada de forma cifrada para su revisión por el profesor/a.
+      </div>
+      <div id="recGradeSection" class="hidden">
+        <div><strong>Bloque Teoría (40 %):</strong> <span id="recTheoryScore"></span> / 4,00 puntos</div>
+        <div><strong>Bloque Cálculo (60 %):</strong> <span id="recCalcScore"></span> / 6,00 puntos</div>
+        <div style="margin-top: 0.35rem; font-size: 1.08rem;"><strong>Calificación final obtenida:</strong> <strong id="recFinalScore"></strong></div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+      <button type="button" class="btn btn-success hidden" id="btnRetryDrive" onclick="retryDriveUpload()">
+        🔄 Reintentar envío a Google Drive
+      </button>
+      <button type="button" class="btn btn-primary" onclick="downloadEncryptedExam()">
+        📥 Descargar copia local encriptada (.enc)
+      </button>
+      <button type="button" class="btn btn-outline" onclick="downloadSingleCsvRow()">
+        📊 Descargar fila CSV de respaldo (.csv)
+      </button>
+    </div>
+
+    <div class="alert alert-info" style="margin-bottom: 0; font-size: 0.86rem;">
+      <strong>Resguardo de seguridad:</strong> Si la subida a Google Drive se ha confirmado en verde, tu entrega ya está en la carpeta del profesor. Puedes descargar igualmente el archivo <code>.enc</code> como justificante personal.
+    </div>
+  </div>
+
+</main>
+
+<!-- =========================================================
+     VISTA PROFESOR: DESENCRIPTADOR, HOJA DE CÁLCULO Y DRIVE
+     ========================================================= -->
+<section class="container hidden" id="teacherView">
+  <div class="card">
+    <div class="section-header">
+      <h2>🔐 Panel del Profesor — Desencriptación y Gestión de Notas</h2>
+      <button type="button" class="btn btn-outline" onclick="toggleTeacherMode()">← Volver al Examen</button>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" aria-selected="true" class="tab-btn active" id="tabBtnDecrypt" onclick="switchTeacherTab('decrypt')">1. Desencriptar Exámenes de Drive (.enc / .csv)</button>
+      <button type="button" role="tab" aria-selected="false" class="tab-btn" id="tabBtnKeys" onclick="switchTeacherTab('keys')">2. Configurar Google Drive y Claves RSA</button>
+    </div>
+
+    <!-- TAB 1: DESENCRIPTAR Y HOJA DE CÁLCULO -->
+    <div id="teacherTabDecrypt">
+      <div class="alert alert-info" style="font-size: 0.88rem;">
+        Descarga los archivos <code>.enc</code> desde tu carpeta de Google Drive (o exporta tu Google Sheet como <code>.csv</code>) y cárgalos aquí junto con tu <strong>Clave Privada RSA (.json)</strong> para ver todas las notas y respuestas corregidas.
+      </div>
+
+      <div class="student-grid" style="margin-bottom: 1.1rem;">
+        <div class="form-group">
+          <label for="privKeyFile">Paso A: Cargar archivo Clave Privada (.json)</label>
+          <input type="file" id="privKeyFile" accept=".json,.key,.txt" class="form-control" onchange="loadPrivateKeyFile(event)">
+        </div>
+        <div class="form-group">
+          <label for="privKeyText">O pegar JWK de Clave Privada</label>
+          <input type="password" id="privKeyText" class="form-control" placeholder="{&quot;kty&quot;:&quot;RSA&quot;, ...}" autocomplete="off" onchange="parsePrivateKeyText()">
+        </div>
+      </div>
+      <div id="privKeyStatus" class="alert alert-warning" aria-live="polite" style="font-size: 0.86rem;">
+        ⚠️ Clave privada no cargada todavía. Carga tu archivo <code>.json</code> para desencriptar las entregas.
+      </div>
+
+      <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 1.25rem 0;">
+
+      <div class="student-grid" style="margin-bottom: 1rem;">
+        <div class="form-group">
+          <label for="studentFilesInput">Paso B: Importar exámenes (.enc) o CSV de Google Sheets (selección múltiple)</label>
+          <input type="file" id="studentFilesInput" accept=".enc,.json,.csv" multiple="" class="form-control" onchange="handleTeacherFilesUpload(event)">
+        </div>
+        <div class="form-group">
+          <label for="masterCsvInput">O cargar Hoja de Cálculo maestra (.csv)</label>
+          <input type="file" id="masterCsvInput" accept=".csv" class="form-control" onchange="handleTeacherFilesUpload(event)">
+        </div>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 0.65rem; margin-bottom: 1rem;">
+        <button type="button" class="btn btn-primary" onclick="exportEncryptedSpreadsheetCsv()">
+          📊 Exportar Hoja de Cálculo Encriptada (.csv)
+        </button>
+        <button type="button" class="btn btn-success" id="btnExportDecryptedCsv" onclick="exportDecryptedSpreadsheetCsv()" disabled="">
+          🔓 Exportar Acta Completa Desencriptada (.csv / Excel)
+        </button>
+        <button type="button" class="btn btn-outline" onclick="clearTeacherRecords()">
+          🗑️ Limpiar tabla
+        </button>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table id="gradesTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre del Alumno/a</th>
+              <th>Grupo</th>
+              <th>Fecha</th>
+              <th>Calificación Encriptada</th>
+              <th>Teoría (/4)</th>
+              <th>Cálculo (/6)</th>
+              <th>Nota Final (/10)</th>
+              <th>Detalle</th>
+            </tr>
+          </thead>
+          <tbody id="gradesTableBody">
+            <tr>
+              <td colspan="9" style="text-align: center; color: var(--muted); padding: 1.5rem;">
+                Aún no se han cargado entregas de alumnos. Selecciona los archivos <code>.enc</code> descargados de tu carpeta de Drive.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Detalle individual de examen desencriptado -->
+      <div id="examDetailModal" class="card hidden" style="margin-top: 1.25rem; border: 2px solid var(--primary-light); background: #f8fafc;">
+        <div class="section-header">
+          <h3 style="margin: 0; color: var(--primary);" id="detailStudentTitle">Detalle de respuestas</h3>
+          <button type="button" class="btn btn-outline" onclick="document.getElementById('examDetailModal').classList.add('hidden')">Cerrar detalle</button>
+        </div>
+        <div id="examDetailContent"></div>
+      </div>
+    </div>
+
+    <!-- TAB 2: CONFIGURACIÓN DE GOOGLE APPS SCRIPT Y CLAVES RSA -->
+    <div id="teacherTabKeys" class="hidden">
+      <div class="card" style="background: #f8fafc; border: 1px solid #cbd5e1; margin-bottom: 1.25rem;">
+        <h3 style="margin-top: 0; color: var(--primary);">☁️ Conexión con tu carpeta de Google Drive y Opciones del Alumno</h3>
+        <p style="font-size: 0.9rem; color: var(--muted);">
+          URL de respaldo de Google Apps Script (si se abre el HTML en local) y visibilidad de la nota:
+        </p>
+        <div class="form-group" style="margin-bottom: 0.85rem;">
+          <label for="appsScriptUrlInput">URL de la Web App de Google Apps Script</label>
+          <input type="url" id="appsScriptUrlInput" class="form-control" placeholder="https://script.google.com/macros/s/AKfycb.../exec">
+        </div>
+        <div style="margin-bottom: 0.95rem;">
+          <label style="display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--text); cursor: pointer;">
+            <input type="checkbox" id="showGradeCheckbox" onchange="toggleShowGradeConfig()">
+            Mostrar la nota numérica al alumno/a en la pantalla final de entrega
+          </label>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.65rem;">
+          <button type="button" class="btn btn-primary" onclick="saveAppsScriptUrlInSession()">
+            💾 Guardar configuración en esta sesión
+          </button>
+          <button type="button" class="btn btn-success" onclick="downloadCustomizedExamHtml()">
+            📄 Descargar Examen HTML listo para alumnos (con URL de Drive incluida)
+          </button>
+        </div>
+        <div id="appsScriptConfigStatus" style="margin-top: 0.75rem; font-size: 0.88rem;"></div>
+      </div>
+
+      <div class="card" style="background: #f8fafc; border: 1px solid #cbd5e1; margin-bottom: 0;">
+        <h3 style="margin-top: 0; color: var(--primary);">🔑 Par de Claves RSA-2048 del Profesor</h3>
+        <p style="font-size: 0.9rem; color: var(--muted);">
+          El examen ya incluye una clave pública RSA-2048 activa. Si deseas generar un par nuevo exclusivo para este curso, pulsa el botón y descarga tanto tu nueva clave privada como el HTML actualizado:
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
+          <button type="button" class="btn btn-primary" onclick="generateNewTeacherKeypair()">
+            🔑 Generar Nuevo Par de Claves RSA-2048
+          </button>
+          <button type="button" class="btn btn-danger hidden" id="btnDownloadNewPrivKey" onclick="downloadGeneratedPrivateKey()">
+            📥 1. Descargar Nueva Clave Privada (.json)
+          </button>
+          <button type="button" class="btn btn-success hidden" id="btnDownloadCustomHtml" onclick="downloadCustomizedExamHtml()">
+            📄 2. Descargar Examen HTML con Nueva Clave y URL Drive
+          </button>
+        </div>
+        <div id="newKeyStatus" aria-live="polite" style="font-size: 0.9rem; color: var(--muted);"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Captura del HTML limpio inicial antes de cualquier interacción o aleatorización
+  const INITIAL_CLEAN_HTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+  /* === APPS_SCRIPT_CONFIG_START === */
+  let GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/a/macros/pmariagrao.org/s/AKfycbxH3JTqawuYzzEQl7D_DmJOnc2QFYrbHmHB6lICUBW-Hl-PCat6u5RVBOTeXYKIPdyR/exec";
+  /* === APPS_SCRIPT_CONFIG_END === */
+
+  /* === SHOW_GRADE_CONFIG_START === */
+  let SHOW_GRADE_TO_STUDENT = false;
+  /* === SHOW_GRADE_CONFIG_END === */
+
+  /* === PUBLIC_KEY_CONFIG_START === */
+  let DEFAULT_PUBLIC_KEY_JWK = {"kty":"RSA","alg":"RSA-OAEP-256","ext":true,"key_ops":["encrypt"],"n":"tX7CaZdOsAK6JpcINH59oOPirM1ga4n5sYxqmig77-ruKWB5guQfYViT0tssSe0Lfd32qrGQ-2b7iEx2ECaT9vgW87AchjFUpyA8aTe-LbOCS9Q0_ug2RGMFB0u07-vuRCLGjpgbddvAsGJW4TJSQI7dBYtld-R_IDlFpxpz3OkqZqS96GqOc0O0x8EJYxK1beOMFczALD62MvZLTNlPuKU2YOi_gIpVQjx5kpJI-80drR15JsIESgjYsDRWFYaotm3_OsLpKNtDtpt3gA5HQqmawjT2_bwuoZ-reOmnpu4UghUhC1QKKYMYM1e6eRBQMQjVx77JG8kOxQ1CsEeZ-Q","e":"AQAB"};
+  /* === PUBLIC_KEY_CONFIG_END === */
+
+  // Estado global de la aplicación
+  let lastSubmission = null;
+  let teacherPrivateKey = null;
+  let teacherRecords = [];
+  let generatedKeyPairData = null;
+  let activeCalcRules = [];
+
+  // =========================================================
+  // ALEATORIZACIÓN DE PREGUNTAS, RESPUESTAS Y PROBLEMAS
+  // =========================================================
+  function shuffleArray(array) {
+    const arr = array.slice();
+    for (let i = arr.length - 1; i > 0; i--) {
+      let j;
+      if (window.crypto && window.crypto.getRandomValues) {
+        const rand = new Uint32Array(1);
+        window.crypto.getRandomValues(rand);
+        j = rand[0] % (i + 1);
+      } else {
+        j = Math.floor(Math.random() * (i + 1));
+      }
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function pickRandom(arr) {
+    return shuffleArray(arr)[0];
+  }
+
+  function formatEsNum(num, decimals = null) {
+    if (decimals !== null) {
+      return Number(num).toFixed(decimals).replace('.', ',');
+    }
+    return String(num).replace('.', ',');
+  }
+
+  function formatEsInt(num) {
+    return Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+
+  function generateDynamicCalcProblems() {
+    // 1. Tolerancias ISO (UD 1)
+    const dNom = pickRandom([16, 18, 20, 22, 24, 25, 28, 30, 32, 35, 40, 45, 50]);
+    const tolPct = pickRandom([1.5, 2.0, 2.5, 3.0, 4.0, 5.0]);
+    const askMin = pickRandom([true, false]);
+    const rawLimit = askMin ? dNom * (1 - tolPct / 100) : dNom * (1 + tolPct / 100);
+    const expected1 = Number(rawLimit.toFixed(2));
+    const kindText = askMin ? 'diámetro mínimo' : 'diámetro máximo';
+    const symHtml1 = askMin ? '<strong>D<sub>mín</sub> =</strong>' : '<strong>D<sub>máx</sub> =</strong>';
+    const ex1 = formatEsNum(Number((dNom * (askMin ? 0.94 : 1.06)).toFixed(2)));
+
+    document.getElementById('calcText1').innerHTML =
+      `Un eje cilíndrico fabricado según normativa ISO tiene un diámetro nominal de <strong>${formatEsNum(dNom, 1)} mm</strong> con una tolerancia admisible del <strong>±${formatEsNum(tolPct)} %</strong>. Calcula el <strong>${kindText}</strong> (en mm) que puede tener la pieza para superar el control de calidad.`;
+    document.getElementById('calcLabel1').innerHTML = symHtml1;
+    document.getElementById('calc1').placeholder = `Ej.: ${ex1}`;
+
+    // 2. Punto de equilibrio oferta/demanda (UD 1)
+    const validEqConfigs = [];
+    const pEqCandidates = [45, 50, 60, 65, 70, 75, 80, 85, 90, 95, 100, 110, 120, 125, 140, 150];
+    const qEqCandidates = [800, 1000, 1200, 1500, 1600, 1800, 2000, 2400, 2500, 3000];
+    const slopeACandidates = [15, 20, 25, 30, 35, 40];
+    const slopeCCandidates = [10, 15, 20, 25, 30];
+
+    pEqCandidates.forEach(pEq => {
+      qEqCandidates.forEach(qEq => {
+        slopeACandidates.forEach(a => {
+          slopeCCandidates.forEach(c => {
+            const b = a * pEq - qEq;
+            const d = qEq + c * pEq;
+            if (b >= 150 && b <= 3500 && d >= 1000 && d <= 7500) {
+              validEqConfigs.push({ pEq, qEq, a, b, c, d });
+            }
+          });
+        });
+      });
+    });
+
+    const eqCfg = pickRandom(validEqConfigs);
+    document.getElementById('calcText2').innerHTML =
+      `En el estudio comercial de un nuevo dispositivo domótico, la función de oferta es <strong>Q<sub>o</sub> = ${eqCfg.a}·P − ${formatEsInt(eqCfg.b)}</strong> y la función de demanda es <strong>Q<sub>d</sub> = −${eqCfg.c}·P + ${formatEsInt(eqCfg.d)}</strong>, donde <em>P</em> es el precio en euros (€) y <em>Q</em> la cantidad de unidades. Calcula el <strong>precio de equilibrio</strong> del mercado (en €).`;
+    document.getElementById('calc2').placeholder = `Ej.: ${eqCfg.pEq + 10}`;
+
+    // 3. Comercialización: ganancias y rebaja de PVP (UD 1)
+    const validSalesConfigs = [];
+    const costCandidates = [12, 14.5, 15, 16.5, 18, 18.5, 20, 22, 24, 25];
+    const m1Candidates = [6, 7.5, 8, 9, 10, 12];
+    const discCandidates = [1.5, 2, 2.5, 3, 4];
+    const n1Candidates = [3000, 3600, 4000, 4200, 4500, 4800, 5000, 5400, 6000];
+
+    costCandidates.forEach(cost => {
+      m1Candidates.forEach(m1 => {
+        discCandidates.forEach(disc => {
+          const m2 = Number((m1 - disc).toFixed(2));
+          if (m2 >= 2) {
+            n1Candidates.forEach(n1 => {
+              const totalProfit = Number((n1 * m1).toFixed(2));
+              const n2 = totalProfit / m2;
+              if (Number.isInteger(n2) && n2 > n1 && n2 <= 18000) {
+                validSalesConfigs.push({
+                  cost,
+                  p1: Number((cost + m1).toFixed(2)),
+                  disc,
+                  p2: Number((cost + m2).toFixed(2)),
+                  n1,
+                  n2
+                });
+              }
+            });
+          }
+        });
+      });
+    });
+
+    const salesCfg = pickRandom(validSalesConfigs);
+    document.getElementById('calcText3').innerHTML =
+      `Una empresa fabrica auriculares inalámbricos con un precio de coste de <strong>${formatEsNum(salesCfg.cost, 2)} €/unidad</strong> y los vende al público a <strong>${formatEsNum(salesCfg.p1, 2)} €</strong>, vendiendo <strong>${formatEsInt(salesCfg.n1)} unidades</strong>. Para ganar cuota de mercado rebaja el precio de venta al público en <strong>${formatEsNum(salesCfg.disc, 2)} €</strong> (pasando a ${formatEsNum(salesCfg.p2, 2)} €). Calcula <strong>cuántas unidades</strong> deberá vender al nuevo precio para mantener exactamente las mismas ganancias totales.`;
+    document.getElementById('calc3').placeholder = `Ej.: ${salesCfg.n2 + 500}`;
+
+    // 4. Resistividad eléctrica (UD 2)
+    const condMat = pickRandom([
+      { name: 'cobre', rho: 0.017 },
+      { name: 'aluminio', rho: 0.028 }
+    ]);
+    const lengthM = pickRandom([150, 200, 250, 300, 350, 400, 450, 500, 600, 750, 800]);
+    const sectionMm2 = pickRandom([0.5, 1.0, 1.5, 2.0, 2.5, 4.0]);
+    const expected4 = Number(((condMat.rho * lengthM) / sectionMm2).toFixed(2));
+
+    document.getElementById('calcText4').innerHTML =
+      `Un conductor de ${condMat.name} de <strong>${lengthM} m</strong> de longitud posee una sección transversal de <strong>${formatEsNum(sectionMm2)} mm<sup>2</sup></strong>. Sabiendo que la resistividad del ${condMat.name} es <strong>ρ = ${formatEsNum(condMat.rho)} Ω·mm<sup>2</sup>/m</strong>, calcula la <strong>resistencia eléctrica</strong> (en ohmios, Ω) que ofrece el cable al paso de la corriente.`;
+    document.getElementById('calc4').placeholder = `Ej.: ${formatEsNum(Number((expected4 * 1.1).toFixed(1)))}`;
+
+    // 5. Ley de Hooke / Elasticidad (UD 2)
+    const validHookeConfigs = [];
+    const sideMmCandidates = [10, 15, 20, 25, 30];
+    const l0HookeCandidates = [1.0, 1.2, 1.5, 1.8, 2.0, 2.4, 2.5];
+    const forceCandidates = [12000, 15000, 18000, 20000, 24000, 25000, 30000, 32000, 36000, 40000, 45000, 48000, 50000];
+    const eCandidates = [
+      { coef: 2.0, disp: '2·10<sup>11</sup>', plain: '2·10^11' },
+      { coef: 2.1, disp: '2,1·10<sup>11</sup>', plain: '2,1·10^11' },
+      { coef: 1.1, disp: '1,1·10<sup>11</sup>', plain: '1,1·10^11' },
+      { coef: 0.7, disp: '0,7·10<sup>11</sup>', plain: '0,7·10^11' }
+    ];
+
+    sideMmCandidates.forEach(sideMm => {
+      const areaM2 = Math.pow(sideMm * 1e-3, 2);
+      l0HookeCandidates.forEach(l0 => {
+        forceCandidates.forEach(F => {
+          eCandidates.forEach(eObj => {
+            const deltaLMm = ((F * l0) / (eObj.coef * 1e11 * areaM2)) * 1000;
+            const rounded2 = Number(deltaLMm.toFixed(2));
+            if (rounded2 >= 0.15 && rounded2 <= 5.0 && Math.abs(deltaLMm - rounded2) < 1e-6) {
+              validHookeConfigs.push({ sideMm, l0, F, eObj, expected5: rounded2 });
+            }
+          });
+        });
+      });
+    });
+
+    const hookeCfg = pickRandom(validHookeConfigs);
+    document.getElementById('calcText5').innerHTML =
+      `Una barra metálica de sección cuadrada de <strong>${hookeCfg.sideMm} mm de lado</strong> y <strong>${formatEsNum(hookeCfg.l0)} m de longitud inicial</strong> se somete a una fuerza de tracción de <strong>${formatEsInt(hookeCfg.F)} N</strong> dentro de su régimen elástico. Si su módulo de elasticidad (Young) es <strong>E = ${hookeCfg.eObj.disp} N/m<sup>2</sup></strong>, calcula el <strong>alargamiento total (ΔL)</strong> que experimenta la barra expresado en <strong>milímetros (mm)</strong>.`;
+    document.getElementById('calc5').placeholder = `Ej.: ${formatEsNum(Number((hookeCfg.expected5 * 1.2).toFixed(2)))}`;
+
+    // 6. Dilatación térmica lineal (UD 2)
+    const beamMat = pickRandom([
+      { name: 'acero', alpha: 1.1e-5, disp: '1,1·10<sup>−5</sup>', plain: '1,1·10^-5' },
+      { name: 'cobre', alpha: 1.7e-5, disp: '1,7·10<sup>−5</sup>', plain: '1,7·10^-5' },
+      { name: 'aluminio', alpha: 2.3e-5, disp: '2,3·10<sup>−5</sup>', plain: '2,3·10^-5' }
+    ]);
+    const l0Beam = pickRandom([20, 25, 30, 35, 40, 45, 50, 60]);
+    const tInit = pickRandom([5, 8, 10, 12, 15]);
+    const deltaT = pickRandom([20, 25, 30, 35, 40]);
+    const tFinal = tInit + deltaT;
+    const expected6 = Number((l0Beam * beamMat.alpha * deltaT * 1000).toFixed(2));
+
+    document.getElementById('calcText6').innerHTML =
+      `Una viga estructural de ${beamMat.name} tiene una longitud inicial de <strong>${l0Beam} m</strong> en invierno a <strong>${tInit} °C</strong>, y en verano alcanza los <strong>${tFinal} °C</strong>. Sabiendo que el coeficiente de dilatación lineal del ${beamMat.name} es <strong>α = ${beamMat.disp} °C<sup>−1</sup></strong>, calcula el <strong>incremento de longitud (ΔL)</strong> que experimenta la viga expresado en <strong>milímetros (mm)</strong>.`;
+    document.getElementById('calc6').placeholder = `Ej.: ${formatEsNum(Number((expected6 * 1.1).toFixed(1)))}`;
+
+    // Guardar reglas activas para la corrección automática y el informe docente
+    activeCalcRules = [
+      {
+        id: '5.1',
+        calcId: 'calc1',
+        workId: 'work1',
+        label: `Diámetro ${askMin ? 'mínimo' : 'máximo'} eje (${formatEsNum(dNom, 1)} mm ±${formatEsNum(tolPct)} %)`,
+        expected: expected1,
+        unit: 'mm'
+      },
+      {
+        id: '5.2',
+        calcId: 'calc2',
+        workId: 'work2',
+        label: `Precio equilibrio (Qo=${eqCfg.a}P−${eqCfg.b}, Qd=−${eqCfg.c}P+${eqCfg.d})`,
+        expected: eqCfg.pEq,
+        unit: '€'
+      },
+      {
+        id: '5.3',
+        calcId: 'calc3',
+        workId: 'work3',
+        label: `Unidades necesarias nuevo PVP (Coste ${formatEsNum(salesCfg.cost, 2)}€, PVP ${formatEsNum(salesCfg.p1, 2)}€→${formatEsNum(salesCfg.p2, 2)}€, N1=${salesCfg.n1})`,
+        expected: salesCfg.n2,
+        unit: 'unidades'
+      },
+      {
+        id: '5.4',
+        calcId: 'calc4',
+        workId: 'work4',
+        label: `Resistencia ${condMat.name} (L=${lengthM} m, S=${formatEsNum(sectionMm2)} mm², ρ=${formatEsNum(condMat.rho)})`,
+        expected: expected4,
+        unit: 'Ω'
+      },
+      {
+        id: '5.5',
+        calcId: 'calc5',
+        workId: 'work5',
+        label: `Alargamiento Ley Hooke (lado=${hookeCfg.sideMm} mm, L0=${formatEsNum(hookeCfg.l0)} m, F=${hookeCfg.F} N, E=${hookeCfg.eObj.plain})`,
+        expected: hookeCfg.expected5,
+        unit: 'mm'
+      },
+      {
+        id: '5.6',
+        calcId: 'calc6',
+        workId: 'work6',
+        label: `Dilatación ${beamMat.name} (L0=${l0Beam} m, ${tInit}°C→${tFinal}°C, α=${beamMat.plain})`,
+        expected: expected6,
+        unit: 'mm'
+      }
+    ];
+  }
+
+  function randomizeExamOrder() {
+    // 1. Aleatorizar orden de preguntas en Sección 1 (Completar)
+    const secComp = document.getElementById('secCompCard');
+    const compItems = shuffleArray(Array.from(secComp.querySelectorAll('.question-item')));
+    compItems.forEach((item, idx) => {
+      secComp.appendChild(item);
+      const qTitle = item.querySelector('.q-title');
+      const tag = qTitle.querySelector('.q-tag');
+      if (tag && tag.nextSibling && tag.nextSibling.nodeType === Node.TEXT_NODE) {
+        tag.nextSibling.nodeValue = tag.nextSibling.nodeValue.replace(/^\s*1\.\d+\.\s*/, ` 1.${idx + 1}. `);
+      }
+      const blank = item.querySelector('.inline-blank');
+      if (blank) blank.setAttribute('aria-label', `Respuesta 1.${idx + 1}`);
+    });
+
+    // 2. Aleatorizar orden de conceptos y de opciones en Sección 2 (Relacionar)
+    const secRel = document.getElementById('secRelCard');
+    const relRows = shuffleArray(Array.from(secRel.querySelectorAll('.match-row')));
+    const firstSelect = relRows[0].querySelector('select');
+    const baseOptions = Array.from(firstSelect.querySelectorAll('option'))
+      .filter(opt => opt.value !== '')
+      .map(opt => ({
+        value: opt.value,
+        text: opt.textContent.replace(/^[A-Z]\)\s*/, '')
+      }));
+    const shuffledOptions = shuffleArray(baseOptions);
+    const visualLetters = ['A', 'B', 'C', 'D', 'E'];
+
+    relRows.forEach((row, idx) => {
+      secRel.appendChild(row);
+      const strongEl = row.querySelector('.match-label strong');
+      if (strongEl) {
+        strongEl.textContent = strongEl.textContent.replace(/^2\.\d+\.\s*/, `2.${idx + 1}. `);
+      }
+      const sel = row.querySelector('select');
+      const placeholder = sel.querySelector('option[value=""]');
+      sel.innerHTML = '';
+      if (placeholder) sel.appendChild(placeholder);
+      shuffledOptions.forEach((optData, optIdx) => {
+        const optEl = document.createElement('option');
+        optEl.value = optData.value;
+        optEl.textContent = `${visualLetters[optIdx]}) ${optData.text}`;
+        sel.appendChild(optEl);
+      });
+    });
+
+    // 3. Aleatorizar orden de preguntas en Sección 3 (Verdadero o Falso)
+    const secVf = document.getElementById('secVfCard');
+    const vfItems = shuffleArray(Array.from(secVf.querySelectorAll('.question-item')));
+    vfItems.forEach((item, idx) => {
+      secVf.appendChild(item);
+      const qTitle = item.querySelector('.q-title');
+      const tag = qTitle.querySelector('.q-tag');
+      if (tag && tag.nextSibling && tag.nextSibling.nodeType === Node.TEXT_NODE) {
+        tag.nextSibling.nodeValue = tag.nextSibling.nodeValue.replace(/^\s*3\.\d+\.\s*/, ` 3.${idx + 1}. `);
+      }
+    });
+
+    // 4. Aleatorizar orden de preguntas y de respuestas en Sección 4 (Opción múltiple)
+    const secMc = document.getElementById('secMcCard');
+    const mcItems = shuffleArray(Array.from(secMc.querySelectorAll('.question-item')));
+    const mcLetters = ['a', 'b', 'c', 'd'];
+
+    mcItems.forEach((item, idx) => {
+      secMc.appendChild(item);
+      const qTitle = item.querySelector('.q-title');
+      const tag = qTitle.querySelector('.q-tag');
+      if (tag && tag.nextSibling && tag.nextSibling.nodeType === Node.TEXT_NODE) {
+        tag.nextSibling.nodeValue = tag.nextSibling.nodeValue.replace(/^\s*4\.\d+\.\s*/, ` 4.${idx + 1}. `);
+      }
+
+      const radioGroup = item.querySelector('.radio-group');
+      const radioLabels = shuffleArray(Array.from(radioGroup.querySelectorAll('.radio-option')));
+      radioLabels.forEach((lbl, optIdx) => {
+        radioGroup.appendChild(lbl);
+        const input = lbl.querySelector('input');
+        if (input && input.nextSibling && input.nextSibling.nodeType === Node.TEXT_NODE) {
+          const cleanText = input.nextSibling.nodeValue.replace(/^\s*[a-d]\)\s*/i, '');
+          input.nextSibling.nodeValue = ` ${mcLetters[optIdx]}) ${cleanText}`;
+        }
+      });
+    });
+
+    // 5. Generar nuevos datos en Sección 5 (Cálculo) y aleatorizar orden de problemas
+    generateDynamicCalcProblems();
+    const secCalc = document.getElementById('secCalcCard');
+    const calcBoxes = shuffleArray(Array.from(secCalc.querySelectorAll('.calc-box')));
+    calcBoxes.forEach((box, idx) => {
+      secCalc.appendChild(box);
+      const qTitle = box.querySelector('.q-title');
+      const tag = qTitle.querySelector('.q-tag');
+      if (tag && tag.nextSibling && tag.nextSibling.nodeType === Node.TEXT_NODE) {
+        tag.nextSibling.nodeValue = tag.nextSibling.nodeValue.replace(/^\s*Problema 5\.\d+\./, ` Problema 5.${idx + 1}.`);
+      }
+    });
+  }
+
+  // =========================================================
+  // UTILIDADES CRIPTOGRÁFICAS (RSA-OAEP 2048 + AES-GCM 256)
+  // =========================================================
+  function arrayBufferToBase64(buffer) {
+    const bytes = new Uint8Array(buffer);
+    let binary = '';
+    const chunkSize = 0x8000;
+    for (let i = 0; i < bytes.length; i += chunkSize) {
+      binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunkSize));
+    }
+    return btoa(binary);
+  }
+
+  function base64ToUint8Array(base64) {
+    const binary = atob(base64.trim());
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+    return bytes;
+  }
+
+  function ensureWebCrypto() {
+    if (!window.crypto || !window.crypto.subtle) {
+      throw new Error('Tu navegador no soporta Web Crypto API en este contexto.');
+    }
+  }
+
+  async function encryptObjectForTeacher(payloadObj) {
+    ensureWebCrypto();
+    const pubKey = await crypto.subtle.importKey(
+      'jwk',
+      DEFAULT_PUBLIC_KEY_JWK,
+      { name: 'RSA-OAEP', hash: 'SHA-256' },
+      false,
+      ['encrypt']
+    );
+
+    const aesKey = await crypto.subtle.generateKey(
+      { name: 'AES-GCM', length: 256 },
+      true,
+      ['encrypt']
+    );
+
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const encodedData = new TextEncoder().encode(JSON.stringify(payloadObj));
+    const ciphertext = await crypto.subtle.encrypt(
+      { name: 'AES-GCM', iv },
+      aesKey,
+      encodedData
+    );
+
+    const rawAesKey = await crypto.subtle.exportKey('raw', aesKey);
+    const encryptedKey = await crypto.subtle.encrypt(
+      { name: 'RSA-OAEP' },
+      pubKey,
+      rawAesKey
+    );
+
+    return {
+      v: 1,
+      alg: 'RSA-OAEP-256+AES-256-GCM',
+      ek: arrayBufferToBase64(encryptedKey),
+      iv: arrayBufferToBase64(iv),
+      ct: arrayBufferToBase64(ciphertext)
+    };
+  }
+
+  async function decryptObjectWithPrivateKey(envelopeOrBase64, privateCryptoKey) {
+    ensureWebCrypto();
+    let envelope = envelopeOrBase64;
+    if (typeof envelope === 'string') {
+      const trimmed = envelope.trim();
+      if (trimmed.startsWith('{')) {
+        envelope = JSON.parse(trimmed);
+      } else {
+        const jsonStr = new TextDecoder().decode(base64ToUint8Array(trimmed));
+        envelope = JSON.parse(jsonStr);
+      }
+    }
+
+    if (!envelope || !envelope.ek || !envelope.iv || !envelope.ct) {
+      throw new Error('Formato de paquete cifrado no válido.');
+    }
+
+    const ekBytes = base64ToUint8Array(envelope.ek);
+    const ivBytes = base64ToUint8Array(envelope.iv);
+    const ctBytes = base64ToUint8Array(envelope.ct);
+
+    const rawAesBytes = await crypto.subtle.decrypt(
+      { name: 'RSA-OAEP' },
+      privateCryptoKey,
+      ekBytes
+    );
+
+    const aesKey = await crypto.subtle.importKey(
+      'raw',
+      rawAesBytes,
+      { name: 'AES-GCM' },
+      false,
+      ['decrypt']
+    );
+
+    const decryptedBuffer = await crypto.subtle.decrypt(
+      { name: 'AES-GCM', iv: ivBytes },
+      aesKey,
+      ctBytes
+    );
+
+    return JSON.parse(new TextDecoder().decode(decryptedBuffer));
+  }
+
+  // =========================================================
+  // PROGRESO Y NAVEGACIÓN ENTRE VISTAS
+  // =========================================================
+  function getRadioValue(name) {
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : '';
+  }
+
+  function updateProgress() {
+    const checks = [
+      document.getElementById('studentName').value.trim() !== '',
+      document.getElementById('studentGroup').value.trim() !== '',
+      document.getElementById('comp1').value.trim() !== '',
+      document.getElementById('comp2').value.trim() !== '',
+      document.getElementById('comp3').value.trim() !== '',
+      document.getElementById('comp4').value.trim() !== '',
+      document.getElementById('rel1').value !== '',
+      document.getElementById('rel2').value !== '',
+      document.getElementById('rel3').value !== '',
+      document.getElementById('rel4').value !== '',
+      getRadioValue('vf1') !== '',
+      getRadioValue('vf2') !== '',
+      getRadioValue('vf3') !== '',
+      getRadioValue('vf4') !== '',
+      getRadioValue('mc1') !== '',
+      getRadioValue('mc2') !== '',
+      getRadioValue('mc3') !== '',
+      getRadioValue('mc4') !== '',
+      document.getElementById('calc1').value.trim() !== '',
+      document.getElementById('calc2').value.trim() !== '',
+      document.getElementById('calc3').value.trim() !== '',
+      document.getElementById('calc4').value.trim() !== '',
+      document.getElementById('calc5').value.trim() !== '',
+      document.getElementById('calc6').value.trim() !== ''
+    ];
+
+    const completed = checks.filter(Boolean).length;
+    const pct = Math.round((completed / checks.length) * 100);
+    const bar = document.getElementById('progressBar');
+    const wrap = bar ? bar.parentElement : null;
+    if (bar) bar.style.width = pct + '%';
+    if (wrap) wrap.setAttribute('aria-valuenow', String(pct));
+  }
+
+  function toggleTeacherMode() {
+    const studentView = document.getElementById('studentView');
+    const teacherView = document.getElementById('teacherView');
+    const btn = document.getElementById('toggleModeBtn');
+    const isTeacherHidden = teacherView.classList.contains('hidden');
+
+    if (isTeacherHidden) {
+      studentView.classList.add('hidden');
+      teacherView.classList.remove('hidden');
+      btn.textContent = '📝 Volver al Examen';
+      document.getElementById('appsScriptUrlInput').value = GOOGLE_APPS_SCRIPT_URL;
+      document.getElementById('showGradeCheckbox').checked = Boolean(SHOW_GRADE_TO_STUDENT);
+    } else {
+      teacherView.classList.add('hidden');
+      studentView.classList.remove('hidden');
+      btn.textContent = '🔐 Acceso Profesor';
+    }
+  }
+
+  function switchTeacherTab(tab) {
+    const tabDecrypt = document.getElementById('teacherTabDecrypt');
+    const tabKeys = document.getElementById('teacherTabKeys');
+    const btnDecrypt = document.getElementById('tabBtnDecrypt');
+    const btnKeys = document.getElementById('tabBtnKeys');
+
+    if (tab === 'decrypt') {
+      tabDecrypt.classList.remove('hidden');
+      tabKeys.classList.add('hidden');
+      btnDecrypt.classList.add('active');
+      btnDecrypt.setAttribute('aria-selected', 'true');
+      btnKeys.classList.remove('active');
+      btnKeys.setAttribute('aria-selected', 'false');
+    } else {
+      tabDecrypt.classList.add('hidden');
+      tabKeys.classList.remove('hidden');
+      btnDecrypt.classList.remove('active');
+      btnDecrypt.setAttribute('aria-selected', 'false');
+      btnKeys.classList.add('active');
+      btnKeys.setAttribute('aria-selected', 'true');
+    }
+  }
+
+  // =========================================================
+  // MOTOR DE CORRECCIÓN AUTOMÁTICA (TEORÍA 40% + CÁLCULO 60%)
+  // =========================================================
+  function normalizeText(str) {
+    return String(str || '')
+      .trim()
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/\./g, '')
+      .replace(/[\-_/()]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function parseDecimalNumber(raw) {
+    if (raw === null || raw === undefined) return NaN;
+    let s = String(raw).trim().replace(/\s+/g, '');
+    if (/^[-+]?\d{1,3}(\.\d{3})+(,\d+)?$/.test(s)) {
+      s = s.replace(/\./g, '').replace(',', '.');
+    } else if (/^[-+]?\d{1,3}(,\d{3})+(\.\d+)?$/.test(s)) {
+      s = s.replace(/,/g, '');
+    } else {
+      s = s.replace(',', '.');
+    }
+    const match = s.match(/[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?/);
+    if (!match) return NaN;
+    return Number(match[0]);
+  }
+
+  function evaluateExam() {
+    const items = [];
+
+    // 1. Completar (4 x 0.25 = 1.00 pt)
+    const compRules = [
+      {
+        id: '1.1',
+        label: 'Siglas organismo I+D+i en España',
+        raw: document.getElementById('comp1').value,
+        accepted: ['cdti', 'centro para el desarrollo tecnologico y la innovacion', 'centro para el desarrollo tecnologico industrial'],
+        expectedDisplay: 'CDTI'
+      },
+      {
+        id: '1.2',
+        label: 'Margen de valores admisibles en metrología',
+        raw: document.getElementById('comp2').value,
+        accepted: ['tolerancia', 'tolerancias'],
+        expectedDisplay: 'tolerancia'
+      },
+      {
+        id: '1.3',
+        label: 'Oposición a ser rayado o perforado',
+        raw: document.getElementById('comp3').value,
+        accepted: ['dureza'],
+        expectedDisplay: 'dureza'
+      },
+      {
+        id: '1.4',
+        label: 'Siglas sinterización por láser selectiva',
+        raw: document.getElementById('comp4').value,
+        accepted: ['sls', 'sinterizacion laser selectiva', 'sinterizacion por laser selectiva', 'sinterizacion selectiva por laser'],
+        expectedDisplay: 'SLS'
+      }
+    ];
+
+    compRules.forEach(rule => {
+      const norm = normalizeText(rule.raw);
+      const ok = rule.accepted.includes(norm);
+      items.push({
+        id: rule.id,
+        block: 'Teoría',
+        label: rule.label,
+        studentAnswer: rule.raw.trim() || '(Sin responder)',
+        correctAnswer: rule.expectedDisplay,
+        isCorrect: ok,
+        points: ok ? 0.25 : 0,
+        maxPoints: 0.25
+      });
+    });
+
+    // 2. Relacionar (4 x 0.25 = 1.00 pt)
+    const relRules = [
+      { id: '2.1', el: 'rel1', label: 'Ciclo de Deming (PDCA)', expected: 'B' },
+      { id: '2.2', el: 'rel2', label: 'Técnica SCAMPER', expected: 'D' },
+      { id: '2.3', el: 'rel3', label: 'Fundición', expected: 'A' },
+      { id: '2.4', el: 'rel4', label: 'Poliácido láctico (PLA)', expected: 'E' }
+    ];
+
+    relRules.forEach(rule => {
+      const val = document.getElementById(rule.el).value;
+      const ok = val === rule.expected;
+      items.push({
+        id: rule.id,
+        block: 'Teoría',
+        label: rule.label,
+        studentAnswer: val || '(Sin responder)',
+        correctAnswer: rule.expected,
+        isCorrect: ok,
+        points: ok ? 0.25 : 0,
+        maxPoints: 0.25
+      });
+    });
+
+    // 3. Verdadero o Falso (4 x 0.25 = 1.00 pt)
+    const vfRules = [
+      { id: '3.1', name: 'vf1', label: 'Diagrama PERT y ruta crítica', expected: 'V' },
+      { id: '3.2', name: 'vf2', label: 'Fase de crecimiento (descenso ventas)', expected: 'F' },
+      { id: '3.3', name: 'vf3', label: 'Hormigón en masa (tracción vs compresión)', expected: 'F' },
+      { id: '3.4', name: 'vf4', label: 'Plásticos termoestables (redes entrelazadas)', expected: 'V' }
+    ];
+
+    vfRules.forEach(rule => {
+      const val = getRadioValue(rule.name);
+      const ok = val === rule.expected;
+      items.push({
+        id: rule.id,
+        block: 'Teoría',
+        label: rule.label,
+        studentAnswer: val || '(Sin responder)',
+        correctAnswer: rule.expected,
+        isCorrect: ok,
+        points: ok ? 0.25 : 0,
+        maxPoints: 0.25
+      });
+    });
+
+    // 4. Opción múltiple (4 x 0.25 = 1.00 pt)
+    const mcRules = [
+      { id: '4.1', name: 'mc1', label: 'Secuencia Design Thinking', expected: 'b' },
+      { id: '4.2', name: 'mc2', label: 'Dimensiones estudio de viabilidad', expected: 'c' },
+      { id: '4.3', name: 'mc3', label: 'Composición y propiedades del latón', expected: 'b' },
+      { id: '4.4', name: 'mc4', label: 'Comportamiento del oro a nanoescala', expected: 'c' }
+    ];
+
+    mcRules.forEach(rule => {
+      const val = getRadioValue(rule.name);
+      const ok = val === rule.expected;
+      items.push({
+        id: rule.id,
+        block: 'Teoría',
+        label: rule.label,
+        studentAnswer: val ? val.toUpperCase() : '(Sin responder)',
+        correctAnswer: rule.expected.toUpperCase(),
+        isCorrect: ok,
+        points: ok ? 0.25 : 0,
+        maxPoints: 0.25
+      });
+    });
+
+    // 5. Problemas de cálculo dinámicos (6 x 1.00 = 6.00 pts, margen ±2%)
+    activeCalcRules.forEach(rule => {
+      const raw = document.getElementById(rule.calcId).value.trim();
+      const notes = document.getElementById(rule.workId).value.trim();
+      const num = parseDecimalNumber(raw);
+      const tol = Math.abs(rule.expected) * 0.02 + 1e-9;
+      const ok = Number.isFinite(num) && Math.abs(num - rule.expected) <= tol;
+
+      items.push({
+        id: rule.id,
+        block: 'Cálculo',
+        label: rule.label,
+        studentAnswer: raw ? `${raw} ${rule.unit}` : '(Sin responder)',
+        correctAnswer: `${String(rule.expected).replace('.', ',')} ${rule.unit}`,
+        notes,
+        isCorrect: ok,
+        points: ok ? 1.0 : 0,
+        maxPoints: 1.0
+      });
+    });
+
+    const theoryScore = Number(
+      items.filter(i => i.block === 'Teoría').reduce((acc, i) => acc + i.points, 0).toFixed(2)
+    );
+    const calcScore = Number(
+      items.filter(i => i.block === 'Cálculo').reduce((acc, i) => acc + i.points, 0).toFixed(2)
+    );
+    const finalScore = Number((theoryScore + calcScore).toFixed(2));
+
+    return { theoryScore, calcScore, finalScore, items };
+  }
+
+  // =========================================================
+  // ENVÍO A GOOGLE DRIVE (google.script.run + respaldo doPost)
+  // =========================================================
+  function runAppsScriptServerSave(payload) {
+    return new Promise((resolve, reject) => {
+      if (typeof google === 'undefined' || !google.script || !google.script.run) {
+        reject(new Error('NO_APPS_SCRIPT_RUNTIME'));
+        return;
+      }
+      google.script.run
+        .withSuccessHandler(res => resolve(res))
+        .withFailureHandler(err => reject(err))
+        .guardarExamenEnDrive(payload);
+    });
+  }
+
+  async function uploadSubmissionToGoogleDrive(sub) {
+    const statusBox = document.getElementById('driveUploadStatus');
+    const retryBtn = document.getElementById('btnRetryDrive');
+    const url = (GOOGLE_APPS_SCRIPT_URL || '').trim();
+
+    statusBox.className = 'alert alert-info';
+    statusBox.textContent = '⏳ Guardando examen encriptado (.enc) en la carpeta de Google Drive del profesor...';
+    retryBtn.classList.add('hidden');
+
+    const appsScriptPayload = {
+      submissionId: sub.id,
+      studentName: sub.studentName,
+      studentGroup: sub.studentGroup,
+      studentDni: sub.studentDni || '',
+      timestamp: sub.submittedAt,
+      encryptedExamContent: JSON.stringify(sub.encFileObject, null, 2),
+      encryptedGradeCsv: sub.csvGradeToken
+    };
+
+    // 1. Vía directa mediante google.script.run (cuando se abre desde la URL de Apps Script)
+    if (typeof google !== 'undefined' && google.script && google.script.run) {
+      try {
+        const result = await runAppsScriptServerSave(appsScriptPayload);
+        if (result && result.status === 'ok') {
+          statusBox.className = 'alert alert-success';
+          statusBox.innerHTML = `✅ <strong>¡Archivo .enc guardado correctamente en Google Drive!</strong> Archivo creado en la carpeta del profesor: <code>${escapeHtml(result.file || '')}</code>`;
+          return;
+        } else {
+          throw new Error((result && result.message) || 'Error al guardar el archivo en Drive');
+        }
+      } catch (gsErr) {
+        statusBox.className = 'alert alert-danger';
+        statusBox.innerHTML = `❌ <strong>Error al guardar en Google Drive (${escapeHtml(gsErr.message)}).</strong> Se ha descargado una copia local <code>.enc</code> de seguridad.`;
+        retryBtn.classList.remove('hidden');
+        downloadEncryptedExam();
+        return;
+      }
+    }
+
+    // 2. Vía respaldo mediante fetch POST (cuando el alumno abre el archivo HTML en local)
+    if (!url || !url.startsWith('http')) {
+      statusBox.className = 'alert alert-warning';
+      statusBox.innerHTML =
+        '⚠️ <strong>URL de Google Apps Script no configurada.</strong> Se ha descargado automáticamente tu archivo <code>.enc</code> localmente como respaldo.';
+      downloadEncryptedExam();
+      return;
+    }
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(appsScriptPayload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const result = await response.json();
+      if (result.status === 'ok') {
+        statusBox.className = 'alert alert-success';
+        statusBox.innerHTML = `✅ <strong>¡Archivo .enc guardado correctamente en Google Drive!</strong> Archivo creado en la carpeta del profesor: <code>${escapeHtml(result.file || '')}</code>`;
+      } else {
+        throw new Error(result.message || 'Respuesta inesperada de Google Apps Script');
+      }
+    } catch (err) {
+      statusBox.className = 'alert alert-warning';
+      statusBox.innerHTML =
+        `⚠️ <strong>No se pudo confirmar la subida automática (${escapeHtml(err.message)}).</strong> Se ha descargado automáticamente tu archivo <code>.enc</code> en tu equipo para que lo entregues o reintentes el envío.`;
+      retryBtn.classList.remove('hidden');
+      downloadEncryptedExam();
+    }
+  }
+
+  function retryDriveUpload() {
+    if (lastSubmission) {
+      uploadSubmissionToGoogleDrive(lastSubmission);
+    }
+  }
+
+  function sanitizeFilename(name) {
+    return String(name || 'Alumno')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-zA-Z0-9_-]+/g, '_')
+      .replace(/^_+|_+$/g, '') || 'Alumno';
+  }
+
+  function triggerBlobDownload(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1500);
+  }
+
+  async function submitExam() {
+    const nameEl = document.getElementById('studentName');
+    const groupEl = document.getElementById('studentGroup');
+    const dniEl = document.getElementById('studentDni');
+
+    const studentName = nameEl.value.trim();
+    const studentGroup = groupEl.value.trim();
+    const studentDni = dniEl.value.trim();
+
+    if (!studentName) {
+      alert('Por favor, escribe tus Apellidos y Nombre antes de finalizar el examen.');
+      nameEl.focus();
+      return;
+    }
+    if (!studentGroup) {
+      alert('Por favor, indica tu Curso y Grupo antes de finalizar el examen.');
+      groupEl.focus();
+      return;
+    }
+
+    const evaluation = evaluateExam();
+    const unanswered = evaluation.items.filter(it => it.studentAnswer === '(Sin responder)').length;
+    if (unanswered > 0) {
+      const proceed = confirm(
+        `Has dejado ${unanswered} pregunta(s) sin responder.\n\n¿Deseas finalizar y enviar el examen igualmente?`
+      );
+      if (!proceed) return;
+    }
+
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = '⏳ Encriptando y enviando a Google Drive...';
+
+    try {
+      const randBytes = crypto.getRandomValues(new Uint8Array(3));
+      const randHex = Array.from(randBytes).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+      const submissionId = `EX-${Date.now().toString(36).toUpperCase()}-${randHex}`;
+      const submittedAt = new Date().toLocaleString('es-ES');
+
+      const fullPayload = {
+        id: submissionId,
+        studentName,
+        studentGroup,
+        studentDni,
+        submittedAt,
+        theoryScore: evaluation.theoryScore,
+        calcScore: evaluation.calcScore,
+        finalScore: evaluation.finalScore,
+        items: evaluation.items
+      };
+
+      const gradePayload = {
+        id: submissionId,
+        studentName,
+        studentGroup,
+        studentDni,
+        submittedAt,
+        theoryScore: evaluation.theoryScore,
+        calcScore: evaluation.calcScore,
+        finalScore: evaluation.finalScore
+      };
+
+      const encryptedExam = await encryptObjectForTeacher(fullPayload);
+      const encryptedGrade = await encryptObjectForTeacher(gradePayload);
+
+      const encFileObject = {
+        format: 'TECNOLOGIA_1BACH_UD1_UD2_ENC_V1',
+        id: submissionId,
+        studentName,
+        studentGroup,
+        studentDni,
+        submittedAt,
+        encryptedExam,
+        encryptedGrade
+      };
+
+      const csvGradeToken = btoa(JSON.stringify(encryptedGrade));
+
+      lastSubmission = {
+        id: submissionId,
+        studentName,
+        studentGroup,
+        studentDni,
+        submittedAt,
+        encFileObject,
+        csvGradeToken
+      };
+
+      // Bloquear edición y mostrar resguardo
+      nameEl.disabled = true;
+      groupEl.disabled = true;
+      dniEl.disabled = true;
+      document.getElementById('examForm').classList.add('hidden');
+
+      document.getElementById('recName').textContent = studentName;
+      document.getElementById('recGroup').textContent = studentGroup;
+      document.getElementById('recDate').textContent = submittedAt;
+      document.getElementById('recId').textContent = submissionId;
+      document.getElementById('recTheoryScore').textContent = evaluation.theoryScore.toFixed(2).replace('.', ',');
+      document.getElementById('recCalcScore').textContent = evaluation.calcScore.toFixed(2).replace('.', ',');
+      const finalScoreEl = document.getElementById('recFinalScore');
+      finalScoreEl.textContent = `${evaluation.finalScore.toFixed(2).replace('.', ',')} / 10`;
+      finalScoreEl.style.color = evaluation.finalScore >= 5 ? '#059669' : '#b91c1c';
+
+      if (SHOW_GRADE_TO_STUDENT) {
+        document.getElementById('recGradeSection').classList.remove('hidden');
+        document.getElementById('recGradeHiddenMsg').classList.add('hidden');
+      } else {
+        document.getElementById('recGradeSection').classList.add('hidden');
+        document.getElementById('recGradeHiddenMsg').classList.remove('hidden');
+      }
+
+      document.getElementById('submissionReceipt').classList.remove('hidden');
+
+      // Subir directamente a la carpeta de Google Drive
+      await uploadSubmissionToGoogleDrive(lastSubmission);
+    } catch (err) {
+      alert('Error al encriptar el examen: ' + err.message);
+      submitBtn.disabled = false;
+      submitBtn.textContent = '☁️ Finalizar Examen y Enviar a Google Drive';
+    }
+  }
+
+  function downloadEncryptedExam() {
+    if (!lastSubmission) return;
+    const jsonStr = JSON.stringify(lastSubmission.encFileObject, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json;charset=utf-8' });
+    const filename = `Examen_${sanitizeFilename(lastSubmission.studentName)}_${lastSubmission.id}.enc`;
+    triggerBlobDownload(blob, filename);
+  }
+
+  function escapeCsvCell(val, sep = ';') {
+    const str = String(val ?? '');
+    if (str.includes(sep) || str.includes('"') || str.includes('\n') || str.includes('\r')) {
+      return '"' + str.replace(/"/g, '""') + '"';
+    }
+    return str;
+  }
+
+  function buildStudentCsvRow(sub, sep = ';') {
+    return [
+      escapeCsvCell(sub.id, sep),
+      escapeCsvCell(sub.studentName, sep),
+      escapeCsvCell(sub.studentGroup, sep),
+      escapeCsvCell(sub.studentDni, sep),
+      escapeCsvCell(sub.submittedAt, sep),
+      escapeCsvCell(sub.csvGradeToken, sep)
+    ].join(sep);
+  }
+
+  const CSV_HEADER_FIELDS = [
+    'ID_Entrega',
+    'Nombre',
+    'Grupo',
+    'NIA',
+    'Fecha',
+    'Calificacion_Encriptada'
+  ];
+
+  function downloadSingleCsvRow() {
+    if (!lastSubmission) return;
+    const header = CSV_HEADER_FIELDS.join(';');
+    const row = buildStudentCsvRow(lastSubmission, ';');
+    const csvContent = '\uFEFF' + header + '\r\n' + row + '\r\n';
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });
+    const filename = `Nota_${sanitizeFilename(lastSubmission.studentName)}_${lastSubmission.id}.csv`;
+    triggerBlobDownload(blob, filename);
+  }
+
+  // =========================================================
+  // PANEL DEL PROFESOR: CARGA DE CLAVE PRIVADA Y DESENCRIPTADO
+  // =========================================================
+  async function importTeacherPrivateJwk(rawJsonText) {
+    const parsed = JSON.parse(rawJsonText.trim());
+    const jwk = parsed.privateKeyJwk ? parsed.privateKeyJwk : parsed;
+    if (!jwk || jwk.kty !== 'RSA' || !jwk.d) {
+      throw new Error('El archivo o texto no contiene una clave privada RSA JWK válida (falta parámetro "d").');
+    }
+
+    const cryptoKey = await crypto.subtle.importKey(
+      'jwk',
+      jwk,
+      { name: 'RSA-OAEP', hash: 'SHA-256' },
+      false,
+      ['decrypt']
+    );
+
+    teacherPrivateKey = cryptoKey;
+    const statusEl = document.getElementById('privKeyStatus');
+    statusEl.className = 'alert alert-success';
+    statusEl.innerHTML = '✅ <strong>Clave privada RSA cargada correctamente.</strong> Todos los exámenes y notas encriptadas se descifrarán automáticamente.';
+    document.getElementById('btnExportDecryptedCsv').disabled = false;
+
+    await redecryptAllRecords();
+    renderTeacherTable();
+  }
+
+  function loadPrivateKeyFile(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      try {
+        await importTeacherPrivateJwk(e.target.result);
+      } catch (err) {
+        const statusEl = document.getElementById('privKeyStatus');
+        statusEl.className = 'alert alert-danger';
+        statusEl.textContent = '❌ Error al cargar la clave privada: ' + err.message;
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  async function parsePrivateKeyText() {
+    const val = document.getElementById('privKeyText').value.trim();
+    if (!val) return;
+    try {
+      await importTeacherPrivateJwk(val);
+    } catch (err) {
+      const statusEl = document.getElementById('privKeyStatus');
+      statusEl.className = 'alert alert-danger';
+      statusEl.textContent = '❌ Error en el formato JWK: ' + err.message;
+    }
+  }
+
+  function parseCsvLine(line, sep) {
+    const cells = [];
+    let current = '';
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (inQuotes) {
+        if (ch === '"' && line[i + 1] === '"') {
+          current += '"';
+          i++;
+        } else if (ch === '"') {
+          inQuotes = false;
+        } else {
+          current += ch;
+        }
+      } else {
+        if (ch === '"') {
+          inQuotes = true;
+        } else if (ch === sep) {
+          cells.push(current);
+          current = '';
+        } else {
+          current += ch;
+        }
+      }
+    }
+    cells.push(current);
+    return cells;
+  }
+
+  function upsertTeacherRecord(rec) {
+    const idx = teacherRecords.findIndex(r => r.id && rec.id && r.id === rec.id);
+    if (idx >= 0) {
+      teacherRecords[idx] = {
+        ...teacherRecords[idx],
+        ...rec,
+        encryptedExam: rec.encryptedExam || teacherRecords[idx].encryptedExam,
+        decryptedFull: rec.decryptedFull || teacherRecords[idx].decryptedFull
+      };
+    } else {
+      teacherRecords.push(rec);
+    }
+  }
+
+  async function handleTeacherFilesUpload(event) {
+    const files = Array.from(event.target.files || []);
+    if (files.length === 0) return;
+
+    for (const file of files) {
+      const text = await file.text();
+      const lowerName = file.name.toLowerCase();
+
+      if (lowerName.endsWith('.csv')) {
+        const clean = text.replace(/^\uFEFF/, '');
+        const lines = clean.split(/\r?\n/).filter(l => l.trim() !== '');
+        if (lines.length < 2) continue;
+        const sep = (!lines[0].includes(';') && lines[0].includes(',')) ? ',' : ';';
+        const headers = parseCsvLine(lines[0], sep).map(h => h.trim());
+
+        const findCol = (names) => headers.findIndex(h => names.includes(h));
+        const idxId = findCol(['ID_Entrega']);
+        const idxName = findCol(['Nombre', 'Apellidos_y_Nombre']);
+        const idxGroup = findCol(['Grupo', 'Curso_Grupo']);
+        const idxDni = findCol(['NIA', 'NIA_Codigo']);
+        const idxDate = findCol(['Fecha', 'Fecha_Hora']);
+        const idxCipher = findCol(['Calificacion_Encriptada']);
+
+        for (let i = 1; i < lines.length; i++) {
+          const cols = parseCsvLine(lines[i], sep);
+          const cipherToken = idxCipher >= 0 ? (cols[idxCipher] || '').trim() : '';
+          if (!cipherToken) continue;
+
+          upsertTeacherRecord({
+            id: idxId >= 0 ? cols[idxId].trim() : `CSV-${i}-${Date.now()}`,
+            studentName: idxName >= 0 ? cols[idxName].trim() : 'Desconocido',
+            studentGroup: idxGroup >= 0 ? cols[idxGroup].trim() : '',
+            studentDni: idxDni >= 0 ? cols[idxDni].trim() : '',
+            submittedAt: idxDate >= 0 ? cols[idxDate].trim() : '',
+            csvGradeToken: cipherToken,
+            encryptedGrade: cipherToken,
+            encryptedExam: null,
+            decryptedGrade: null,
+            decryptedFull: null,
+            decryptError: null
+          });
+        }
+      } else {
+        try {
+          const obj = JSON.parse(text);
+          const gradeToken = obj.encryptedGrade
+            ? (typeof obj.encryptedGrade === 'string' ? obj.encryptedGrade : btoa(JSON.stringify(obj.encryptedGrade)))
+            : '';
+
+          upsertTeacherRecord({
+            id: obj.id || `ENC-${Date.now()}`,
+            studentName: obj.studentName || 'Alumno/a',
+            studentGroup: obj.studentGroup || '',
+            studentDni: obj.studentDni || '',
+            submittedAt: obj.submittedAt || '',
+            csvGradeToken: gradeToken,
+            encryptedGrade: obj.encryptedGrade || null,
+            encryptedExam: obj.encryptedExam || null,
+            decryptedGrade: null,
+            decryptedFull: null,
+            decryptError: null
+          });
+        } catch (err) {
+          alert(`No se pudo leer el archivo "${file.name}": ${err.message}`);
+        }
+      }
+    }
+
+    event.target.value = '';
+    await redecryptAllRecords();
+    renderTeacherTable();
+  }
+
+  async function redecryptAllRecords() {
+    if (!teacherPrivateKey) return;
+
+    for (const rec of teacherRecords) {
+      rec.decryptError = null;
+      try {
+        if (rec.encryptedExam && !rec.decryptedFull) {
+          rec.decryptedFull = await decryptObjectWithPrivateKey(rec.encryptedExam, teacherPrivateKey);
+        }
+        if (rec.decryptedFull) {
+          rec.decryptedGrade = {
+            theoryScore: rec.decryptedFull.theoryScore,
+            calcScore: rec.decryptedFull.calcScore,
+            finalScore: rec.decryptedFull.finalScore
+          };
+        } else if (rec.encryptedGrade && !rec.decryptedGrade) {
+          rec.decryptedGrade = await decryptObjectWithPrivateKey(rec.encryptedGrade, teacherPrivateKey);
+        }
+      } catch (err) {
+        rec.decryptError = 'Clave privada no coincide con este examen';
+      }
+    }
+  }
+
+  function escapeHtml(str) {
+    return String(str ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function renderTeacherTable() {
+    const tbody = document.getElementById('gradesTableBody');
+    if (teacherRecords.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="9" style="text-align: center; color: var(--muted); padding: 1.5rem;">
+            Aún no se han cargado entregas de alumnos. Selecciona los archivos <code>.enc</code> descargados de tu carpeta de Drive.
+          </td>
+        </tr>`;
+      return;
+    }
+
+    tbody.innerHTML = teacherRecords.map((rec, index) => {
+      let theoryCell = '<span style="color: var(--muted);">🔒 Encriptado</span>';
+      let calcCell = '<span style="color: var(--muted);">🔒 Encriptado</span>';
+      let finalCell = '<span style="color: var(--muted);">🔒 Encriptado</span>';
+      let detailBtn = '<span style="color: var(--muted); font-size: 0.8rem;">Requiere clave</span>';
+
+      if (rec.decryptError) {
+        theoryCell = `<span class="badge-err">${escapeHtml(rec.decryptError)}</span>`;
+        calcCell = '—';
+        finalCell = '—';
+        detailBtn = '—';
+      } else if (rec.decryptedGrade) {
+        const g = rec.decryptedGrade;
+        const passed = Number(g.finalScore) >= 5;
+        theoryCell = `${Number(g.theoryScore).toFixed(2).replace('.', ',')} / 4,00`;
+        calcCell = `${Number(g.calcScore).toFixed(2).replace('.', ',')} / 6,00`;
+        finalCell = `<strong style="color: ${passed ? '#059669' : '#b91c1c'}; font-size: 0.98rem;">${Number(g.finalScore).toFixed(2).replace('.', ',')} / 10</strong>`;
+
+        if (rec.decryptedFull) {
+          detailBtn = `<button type="button" class="btn btn-outline" style="padding: 0.3rem 0.65rem; font-size: 0.8rem;" onclick="showExamDetail(${index})">🔍 Ver respuestas</button>`;
+        } else {
+          detailBtn = `<span style="color: var(--muted); font-size: 0.8rem;">Fila CSV (sin .enc)</span>`;
+        }
+      }
+
+      return `
+        <tr>
+          <td>${index + 1}</td>
+          <td><strong>${escapeHtml(rec.studentName)}</strong>${rec.studentDni ? `<br><small style="color:var(--muted);">NIA: ${escapeHtml(rec.studentDni)}</small>` : ''}</td>
+          <td>${escapeHtml(rec.studentGroup)}</td>
+          <td><small>${escapeHtml(rec.submittedAt)}</small></td>
+          <td><div class="cipher-preview" title="${escapeHtml(rec.csvGradeToken)}">${escapeHtml(rec.csvGradeToken)}</div></td>
+          <td>${theoryCell}</td>
+          <td>${calcCell}</td>
+          <td>${finalCell}</td>
+          <td>${detailBtn}</td>
+        </tr>`;
+    }).join('');
+  }
+
+  function showExamDetail(index) {
+    const rec = teacherRecords[index];
+    if (!rec || !rec.decryptedFull) return;
+
+    const full = rec.decryptedFull;
+    document.getElementById('detailStudentTitle').textContent =
+      `Detalle de respuestas — ${full.studentName} (${full.studentGroup}) · Nota Final: ${Number(full.finalScore).toFixed(2).replace('.', ',')} / 10`;
+
+    const rowsHtml = full.items.map(it => `
+      <tr>
+        <td><strong>${escapeHtml(it.id)}</strong> <small>(${escapeHtml(it.block)})</small></td>
+        <td>${escapeHtml(it.label)}${it.notes ? `<div style="margin-top:0.35rem; padding:0.4rem; background:#fffbeb; border-left:3px solid #f59e0b; font-size:0.82rem;"><strong>Desarrollo alumno:</strong> ${escapeHtml(it.notes)}</div>` : ''}</td>
+        <td>${escapeHtml(it.studentAnswer)}</td>
+        <td>${escapeHtml(it.correctAnswer)}</td>
+        <td>${it.isCorrect ? `<span class="badge-ok">+${it.points.toFixed(2).replace('.', ',')} pts</span>` : `<span class="badge-err">0,00 pts</span>`}</td>
+      </tr>
+    `).join('');
+
+    document.getElementById('examDetailContent').innerHTML = `
+      <div style="margin-bottom: 0.75rem; font-size: 0.9rem;">
+        <strong>Teoría:</strong> ${Number(full.theoryScore).toFixed(2).replace('.', ',')} / 4,00 pts &nbsp;|&nbsp;
+        <strong>Cálculo:</strong> ${Number(full.calcScore).toFixed(2).replace('.', ',')} / 6,00 pts &nbsp;|&nbsp;
+        <strong>ID Entrega:</strong> <code>${escapeHtml(full.id)}</code>
+      </div>
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Ítem</th>
+              <th>Enunciado / Concepto</th>
+              <th>Respuesta Alumno/a</th>
+              <th>Solución Correcta</th>
+              <th>Puntuación</th>
+            </tr>
+          </thead>
+          <tbody>${rowsHtml}</tbody>
+        </table>
+      </div>
+    `;
+
+    const modal = document.getElementById('examDetailModal');
+    modal.classList.remove('hidden');
+    modal.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function exportEncryptedSpreadsheetCsv() {
+    if (teacherRecords.length === 0) {
+      alert('No hay registros cargados en la tabla para exportar.');
+      return;
+    }
+    const header = CSV_HEADER_FIELDS.join(';');
+    const rows = teacherRecords.map(rec => buildStudentCsvRow(rec, ';'));
+    const csv = '\uFEFF' + header + '\r\n' + rows.join('\r\n') + '\r\n';
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+    triggerBlobDownload(blob, 'Registro_Notas_Encriptadas_1Bach.csv');
+  }
+
+  function exportDecryptedSpreadsheetCsv() {
+    if (!teacherPrivateKey) {
+      alert('Carga primero tu clave privada RSA para exportar el acta desencriptada.');
+      return;
+    }
+    if (teacherRecords.length === 0) {
+      alert('No hay registros cargados en la tabla para exportar.');
+      return;
+    }
+
+    const headers = [
+      'ID_Entrega',
+      'Nombre',
+      'Grupo',
+      'NIA',
+      'Fecha',
+      'Teoria_sobre_4',
+      'Calculo_sobre_6',
+      'Nota_Final_sobre_10'
+    ];
+
+    const rows = teacherRecords.map(rec => {
+      const g = rec.decryptedGrade;
+      const tStr = g ? Number(g.theoryScore).toFixed(2).replace('.', ',') : 'ERROR_CLAVE';
+      const cStr = g ? Number(g.calcScore).toFixed(2).replace('.', ',') : 'ERROR_CLAVE';
+      const fStr = g ? Number(g.finalScore).toFixed(2).replace('.', ',') : 'ERROR_CLAVE';
+      return [
+        escapeCsvCell(rec.id, ';'),
+        escapeCsvCell(rec.studentName, ';'),
+        escapeCsvCell(rec.studentGroup, ';'),
+        escapeCsvCell(rec.studentDni, ';'),
+        escapeCsvCell(rec.submittedAt, ';'),
+        escapeCsvCell(tStr, ';'),
+        escapeCsvCell(cStr, ';'),
+        escapeCsvCell(fStr, ';')
+      ].join(';');
+    });
+
+    const csv = '\uFEFF' + headers.join(';') + '\r\n' + rows.join('\r\n') + '\r\n';
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+    triggerBlobDownload(blob, 'Acta_Notas_Desencriptadas_1Bach.csv');
+  }
+
+  function clearTeacherRecords() {
+    teacherRecords = [];
+    document.getElementById('examDetailModal').classList.add('hidden');
+    renderTeacherTable();
+  }
+
+  // =========================================================
+  // CONFIGURACIÓN DE URL APPS SCRIPT Y CLAVES RSA DEL PROFESOR
+  // =========================================================
+  function toggleShowGradeConfig() {
+    SHOW_GRADE_TO_STUDENT = document.getElementById('showGradeCheckbox').checked;
+  }
+
+  function saveAppsScriptUrlInSession() {
+    const val = document.getElementById('appsScriptUrlInput').value.trim();
+    const status = document.getElementById('appsScriptConfigStatus');
+    if (!val || !val.startsWith('https://script.google.com/')) {
+      status.innerHTML = '<span style="color: var(--danger);">❌ Introduce una URL válida que empiece por <code>https://script.google.com/</code></span>';
+      return;
+    }
+    GOOGLE_APPS_SCRIPT_URL = val;
+    SHOW_GRADE_TO_STUDENT = document.getElementById('showGradeCheckbox').checked;
+    status.innerHTML = '<span style="color: #059669;">✅ Configuración guardada. Pulsa ahora <strong>«Descargar Examen HTML listo para alumnos»</strong> para generar el archivo definitivo.</span>';
+  }
+
+  async function generateNewTeacherKeypair() {
+    const statusEl = document.getElementById('newKeyStatus');
+    statusEl.textContent = '⏳ Generando par de claves RSA-2048...';
+
+    try {
+      ensureWebCrypto();
+      const keyPair = await crypto.subtle.generateKey(
+        {
+          name: 'RSA-OAEP',
+          modulusLength: 2048,
+          publicExponent: new Uint8Array([1, 0, 1]),
+          hash: 'SHA-256'
+        },
+        true,
+        ['encrypt', 'decrypt']
+      );
+
+      const publicKeyJwk = await crypto.subtle.exportKey('jwk', keyPair.publicKey);
+      const privateKeyJwk = await crypto.subtle.exportKey('jwk', keyPair.privateKey);
+
+      generatedKeyPairData = {
+        createdAt: new Date().toISOString(),
+        publicKeyJwk,
+        privateKeyJwk
+      };
+
+      DEFAULT_PUBLIC_KEY_JWK = publicKeyJwk;
+      teacherPrivateKey = keyPair.privateKey;
+      const privStatus = document.getElementById('privKeyStatus');
+      privStatus.className = 'alert alert-success';
+      privStatus.innerHTML = '✅ <strong>Nueva clave privada RSA cargada en sesión.</strong> Recuerda descargarla abajo para conservarla.';
+      document.getElementById('btnExportDecryptedCsv').disabled = false;
+
+      document.getElementById('btnDownloadNewPrivKey').classList.remove('hidden');
+      document.getElementById('btnDownloadCustomHtml').classList.remove('hidden');
+      statusEl.innerHTML =
+        '✅ <strong>Par de claves RSA-2048 generado.</strong> Descarga ahora los 2 archivos:<br>' +
+        '1) Guarda la <strong>Clave Privada (.json)</strong> en tu equipo.<br>' +
+        '2) Descarga el nuevo <strong>Examen HTML</strong> para repartir a los alumnos.';
+    } catch (err) {
+      statusEl.textContent = '❌ Error generando el par de claves: ' + err.message;
+    }
+  }
+
+  function downloadGeneratedPrivateKey() {
+    if (!generatedKeyPairData) return;
+    const jsonStr = JSON.stringify(generatedKeyPairData.privateKeyJwk, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json;charset=utf-8' });
+    triggerBlobDownload(blob, 'Clave_Privada_Profesor_SOLO_DOCENTE.json');
+  }
+
+  function downloadCustomizedExamHtml() {
+    const inputUrl = document.getElementById('appsScriptUrlInput').value.trim();
+    if (inputUrl) {
+      GOOGLE_APPS_SCRIPT_URL = inputUrl;
+    }
+    SHOW_GRADE_TO_STUDENT = document.getElementById('showGradeCheckbox').checked;
+
+    const activePubJwk = generatedKeyPairData ? generatedKeyPairData.publicKeyJwk : DEFAULT_PUBLIC_KEY_JWK;
+
+    const newScriptBlock =
+      `/* === APPS_SCRIPT_CONFIG_START === */\n` +
+      `  let GOOGLE_APPS_SCRIPT_URL = ${JSON.stringify(GOOGLE_APPS_SCRIPT_URL)};\n` +
+      `  /* === APPS_SCRIPT_CONFIG_END === */`;
+
+    const newShowGradeBlock =
+      `/* === SHOW_GRADE_CONFIG_START === */\n` +
+      `  let SHOW_GRADE_TO_STUDENT = ${Boolean(SHOW_GRADE_TO_STUDENT)};\n` +
+      `  /* === SHOW_GRADE_CONFIG_END === */`;
+
+    const newPubBlock =
+      `/* === PUBLIC_KEY_CONFIG_START === */\n` +
+      `  let DEFAULT_PUBLIC_KEY_JWK = ${JSON.stringify(activePubJwk)};\n` +
+      `  /* === PUBLIC_KEY_CONFIG_END === */`;
+
+    let updatedHtml = INITIAL_CLEAN_HTML.replace(
+      /\/\* === APPS_SCRIPT_CONFIG_START === \*\/[\s\S]*?\/\* === APPS_SCRIPT_CONFIG_END === \*\//,
+      newScriptBlock
+    );
+
+    updatedHtml = updatedHtml.replace(
+      /\/\* === SHOW_GRADE_CONFIG_START === \*\/[\s\S]*?\/\* === SHOW_GRADE_CONFIG_END === \*\//,
+      newShowGradeBlock
+    );
+
+    updatedHtml = updatedHtml.replace(
+      /\/\* === PUBLIC_KEY_CONFIG_START === \*\/[\s\S]*?\/\* === PUBLIC_KEY_CONFIG_END === \*\//,
+      newPubBlock
+    );
+
+    const blob = new Blob([updatedHtml], { type: 'text/html;charset=utf-8' });
+    triggerBlobDownload(blob, 'Examen_Tecnologia_Ingenieria_1Bach_UD1_UD2_DRIVE.html');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    randomizeExamOrder();
+    updateProgress();
+  });
+</script></body></html>
